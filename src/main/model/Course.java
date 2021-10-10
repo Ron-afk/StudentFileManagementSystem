@@ -2,10 +2,10 @@ package model;
 
 // represent course information
 public class Course {
-    private String courseName;
-    private String teacher;
+    private String courseName = "";
+    private String teacher = "";
     private int timeBlock;
-    private String finishTime;
+    private String finishTime = "";
     private double grade;
     private int status = 0; // default as finished course
 
@@ -61,16 +61,29 @@ public class Course {
             System.out.println("Finish time: " + finishTime);
             System.out.println("Grade: " + grade);
             System.out.println("Teacher: " + teacher);
-        }
-        if (status == 1) {
+        } else if (status == 1) {
             System.out.println("Currently taking");
             System.out.println("Time block: " + timeBlock);
             System.out.println("Teacher: " + teacher);
-        }
-        if (status == 2) {
+        } else if (status == 2) {
             System.out.println("Planned for next term");
             System.out.println("Time block: " + timeBlock);
             System.out.println("Teacher: " + teacher);
+        } else {
+            System.out.println("Planned for future");
+        }
+    }
+
+    // EFFECT: print simplified course info
+    public void printSimple() {
+        System.out.println("Course name: " + courseName);
+        System.out.print("Status: ");
+        if (status == 0) {
+            System.out.println("Finished");
+        } else if (status == 1) {
+            System.out.println("Currently taking");
+        } else if (status == 2) {
+            System.out.println("Planned for next term");
         } else {
             System.out.println("Planned for future");
         }

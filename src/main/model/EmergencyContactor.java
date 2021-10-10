@@ -11,6 +11,7 @@ public class EmergencyContactor {
     // EFFECTS: set an emergency contactor with name
     public EmergencyContactor(String name) {
         this.name = name;
+        address = new Address();
     }
 
     // MODIFIES: this

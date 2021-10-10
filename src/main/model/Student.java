@@ -22,12 +22,14 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         courses = new ArrayList<>();
+        address = new Address();
+        emergencyContactor = new EmergencyContactor("");
     }
 
     // REQUIRES: last name and first name can not be empty string
     // MODIFIES: this
     // EFFECTS: change student's name on record
-    public void changeName(String firstName,String lastName) {
+    public void changeName(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -168,5 +170,19 @@ public class Student {
             }
         }
         return futureCourse;
+    }
+
+    public void printInfo() {
+        System.out.println("First Name: " + firstName);
+        System.out.println("Last Name: " + lastName);
+        System.out.println("Address: ");
+        address.print();
+        System.out.println("Phone Number: " + phoneNum);
+        System.out.println("Emergency Contactor: ");
+        emergencyContactor.print();
+        System.out.println("Course History: ");
+        for (Course c : courses) {
+            c.printSimple();
+        }
     }
 }
