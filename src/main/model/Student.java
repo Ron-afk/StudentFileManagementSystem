@@ -49,11 +49,7 @@ public class Student {
     // MODIFIES: this
     // EFFECTS: change student's email address, return warning if the email address is invalid
     public void changeEmail(String email) {
-        if (email.matches("^(.+)@(.+)$")) {
-            this.email = email;
-        } else {
-            System.out.println("Email address is invalid");
-        }
+        this.email = email;
     }
 
     // MODIFIES: this
@@ -175,9 +171,11 @@ public class Student {
     public void printInfo() {
         System.out.println("First Name: " + firstName);
         System.out.println("Last Name: " + lastName);
+        System.out.println("PEN: " + studentNumber);
         System.out.println("Address: ");
         address.print();
         System.out.println("Phone Number: " + phoneNum);
+        System.out.println("Email Address: " + email);
         System.out.println("Emergency Contactor: ");
         emergencyContactor.print();
         System.out.println("Course History: ");

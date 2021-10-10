@@ -2,12 +2,12 @@ package model;
 
 // represent course information
 public class Course {
-    private String courseName = "";
-    private String teacher = "";
+    private String courseName;
+    private String teacher;
     private int timeBlock;
-    private String finishTime = "";
+    private String finishTime;
     private double grade;
-    private int status = 0; // default as finished course
+    private int status; // default as finished course
 
     // REQUIRES: course name cannot be empty string
     // MODIFIES: this
