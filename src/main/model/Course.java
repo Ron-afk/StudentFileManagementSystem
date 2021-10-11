@@ -17,6 +17,12 @@ public class Course {
     }
 
     // MODIFIES: this
+    // EFFECTS: change course name
+    public void changeCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    // MODIFIES: this
     // EFFECTS: change course teacher
     public void changeTeacher(String teacher) {
         this.teacher = teacher;

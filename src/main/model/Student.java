@@ -150,18 +150,29 @@ public class Student {
     public List<Course> getPlannedCourses() {
         List<Course> plannedCourses = new ArrayList<>();
         for (Course c : courses) {
-            if (c.getStatus() == 1) {
+            if (c.getStatus() == 2) {
                 plannedCourses.add(c);
             }
         }
         return plannedCourses;
     }
 
+    // EFFECTS: get all current courses
+    public List<Course> getCurrentCourses() {
+        List<Course> currentCourses = new ArrayList<>();
+        for (Course c : courses) {
+            if (c.getStatus() == 1) {
+                currentCourses.add(c);
+            }
+        }
+        return currentCourses;
+    }
+
     // EFFECTS: get all planned courses for future
     public List<Course> getFutureCourse() {
         List<Course> futureCourse = new ArrayList<>();
         for (Course c : courses) {
-            if (c.getStatus() == 2) {
+            if (c.getStatus() == 3) {
                 futureCourse.add(c);
             }
         }

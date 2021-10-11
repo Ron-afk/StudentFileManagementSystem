@@ -2,15 +2,22 @@ package ui;
 
 import model.Address;
 import model.Course;
+import model.EmergencyContactor;
 import model.Student;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static sun.util.locale.LocaleUtils.isAlphaNumericString;
+
+
 public class StudentFileApplication {
+    private final int maxLoad = 4;
+
     private List<Student> students;
     private Scanner input;
+
 
     // EFFECTS: run the student file system, show the main page
     public StudentFileApplication() {
@@ -91,11 +98,11 @@ public class StudentFileApplication {
     // EFFECTS: select a student to show his/her detailed info
     private void selectStudent() {
         System.out.println("Only number is accepted");
-        System.out.println("Any number not corresponding to a student will return to main menu");
+        System.out.println("Any number not corresponding to a student will return to previous page");
         String selection = input.next();
         int i = Integer.valueOf(selection);
         if (i > students.size() || i <= 0) {
-            System.out.println("Return to main menu");
+            System.out.println("Return to previous page");
         } else {
             Student student = students.get(i - 1);
             student.printInfo();
@@ -115,7 +122,7 @@ public class StudentFileApplication {
         System.out.println("\tec -> edit emergency contactor info");
         System.out.println("\tci -> view detailed course info");
         System.out.println("\tac -> add course to this student");
-        System.out.println("\tany other command will return to the main page");
+        System.out.println("\tany other command will return to the student list");
         commandProcessForStudentDetail(student);
     }
 
@@ -125,7 +132,7 @@ public class StudentFileApplication {
         if (command.equals("en")) {
             editStudentName(student);
         } else if (command.equals("ad")) {
-            editAddress(student);
+            editStudentAddress(student);
         } else if (command.equals("pn")) {
             editPhoneNum(student);
         } else if (command.equals("na")) {
@@ -137,7 +144,7 @@ public class StudentFileApplication {
         } else if (command.equals("ec")) {
             editEmergencyContactor(student);
         } else if (command.equals("ci")) {
-            courseDetailCommand(student);
+            coursesDetail(student);
         } else if (command.equals("ac")) {
             addCourse(student);
         } else {
@@ -170,12 +177,192 @@ public class StudentFileApplication {
         return c;
     }
 
-    private void courseDetailCommand(Student student) {
-        //stub
+    // EFFECTS: print course list command option
+    private void courseListCommand() {
+        System.out.println("\ta -> add course");
+        System.out.println("\tavg -> get current average");
+        System.out.println("\tsch -> get current term schedule");
+        System.out.println("\tplc -> get all future planned courses");
     }
 
+    // EFFECTS: print course detail and command option
+    private void coursesDetail(Student student) {
+        List<Course> courses = student.getAllCourses();
+        int i = 0;
+        for (Course c : courses) {
+            System.out.println((i + 1) + " --> ");
+            c.printSimple();
+            i++;
+        }
+        System.out.println("\nInput a number to visit a course or following command: ");
+        courseListCommand();
+        courseListCommandProcess(courses,student);
+    }
+
+    // MODIFIES: courses, student
+    // EFFECTS: view and edit course for student
+    private void courseListCommandProcess(List<Course> courses, Student student) {
+        String command = input.next();
+        try {
+            int i = Integer.valueOf(command);
+            Course c = courses.get(i - 1);
+            displayCourse(c,student);
+        } catch (Exception e) {
+            if (command.equals("a")) {
+                addCourse(student);
+            } else if (command.equals("avg")) {
+                System.out.println("Current Average: " + student.gradeAvg(courses));
+            } else if (command.equals("sch")) {
+                printSchedule(student);
+            } else if (command.equals("plc")) {
+                printFutureCourse(student);
+            }
+        } finally {
+            returnToCurrentStudent(student);
+        }
+    }
+
+    // EFFECTS: print all future courses
+    private void printFutureCourse(Student student) {
+        List<Course> futureCourse  = student.getFutureCourse();
+        if (futureCourse.size() == 0) {
+            System.out.println("No future planned course");
+        } else {
+            for (Course c : futureCourse) {
+                c.print();
+            }
+        }
+    }
+
+    // EFFECTS: print schedule for current term
+    private void printSchedule(Student student) {
+        List<Course> currentCourses = student.getCurrentCourses();
+        if (currentCourses.size() > maxLoad) {
+            System.out.println("Over loaded");
+        } else if (currentCourses.size() == 0) {
+            System.out.println("No course for current term");
+        } else {
+            for (Course c : currentCourses) {
+                System.out.println("Course Name: " + c.getCourseName() + "Time Block: " + c.getTimeBlock());
+            }
+        }
+    }
+
+    // MODIFIES: courses
+    // EFFECTS: show course and edit course info based on input
+    private void displayCourse(Course c,Student student) {
+        c.print();
+        courseCommand();
+        courseCommandProcess(c,student);
+    }
+
+    // EFFECTS: show command option to operate on course
+    private void courseCommand() {
+        System.out.println("\nChoose a command: ");
+        System.out.println("\tn -> edit course name");
+        System.out.println("\tg -> edit course grade");
+        System.out.println("\ts -> edit course status");
+        System.out.println("\tf -> edit course finishTime");
+        System.out.println("\tt -> edit course time block");
+        System.out.println("\tp -> edit course teacher");
+        System.out.println("Other command will back to course list");
+    }
+
+    // EFFECTS: process course command
+    private void courseCommandProcess(Course c,Student student) {
+        String command = input.next();
+        if (command.equals("n")) {
+            editCourseName(c,student);
+        } else if (command.equals("g")) {
+            editCourseGrade(c,student);
+        } else if (command.equals("s")) {
+            editCourseStatus(c,student);
+        } else if (command.equals("f")) {
+            editCourseFinishTime(c,student);
+        } else if (command.equals("t")) {
+            editCourseTimeBlock(c,student);
+        } else if (command.equals("p")) {
+            editCourseTeacher(c,student);
+        } else {
+            coursesDetail(student);
+        }
+    }
+
+    // MODIFIES: course, student
+    // EFFECTS: change course teacher's name
+    private void editCourseTeacher(Course c, Student student) {
+        System.out.println("Input teacher's name: ");
+        String teacher = input.next();
+        c.changeTeacher(teacher);
+        displayCourse(c,student);
+    }
+
+    // MODIFIES: course, student
+    // EFFECTS: change course time block
+    private void editCourseTimeBlock(Course c, Student student) {
+        System.out.println("Input 1 - 4 for time block");
+        int timeBlock = Integer.valueOf(input.next());
+        c.changeTimeBlock(timeBlock);
+        displayCourse(c,student);
+    }
+
+    // MODIFIES: course, student
+    // EFFECTS: change course finish time
+    private void editCourseFinishTime(Course c, Student student) {
+        System.out.println("Input finish time: ");
+        String finishTime = input.next();
+        c.changeFinishTime(finishTime);
+        displayCourse(c,student);
+    }
+
+    // MODIFIES: course, student
+    // EFFECTS: change course status
+    private void editCourseStatus(Course c, Student student) {
+        System.out.println("\nInput course status: ");
+        System.out.println("\t0 -> finished");
+        System.out.println("\t1 -> currently taking");
+        System.out.println("\t2 -> planned for next term");
+        System.out.println("\t3 -> planned for future");
+        int status = Integer.valueOf(input.next());
+        c.changeStatus(status);
+        displayCourse(c,student);
+    }
+
+    // MODIFIES: course
+    // EFFECTS: change course grade
+    private void editCourseGrade(Course c,Student student) {
+        System.out.println("Input course grade: ");
+        String grade = input.next();
+        Double num = Double.valueOf(grade);
+        c.changeGrade(num);
+        displayCourse(c,student);
+    }
+
+    // MODIFIES: course
+    // EFFECTS: change course name
+    private void editCourseName(Course c,Student s) {
+        System.out.println("Input course name: ");
+        String courseName = input.next();
+        c.changeCourseName(courseName);
+        displayCourse(c,s);
+    }
+
+
+    // MODIFIES: this
+    // EFFECTS: edit emergency contactor's information
     private void editEmergencyContactor(Student student) {
-        //stub
+        System.out.println("Input emergency contactor's name: ");
+        String name = input.next();
+        EmergencyContactor ec = new EmergencyContactor(name);
+        System.out.println("Input phone number: ");
+        String phoneNum = input.next();
+        ec.changePhoneNum(phoneNum);
+        System.out.println("Input relation with student: ");
+        String relation = input.next();
+        Address address = createNewAddress();
+        ec.changeAddress(address);
+        student.changeEmergencyContactor(ec);
+        returnToCurrentStudent(student);
     }
 
     // MODIFIES: student
@@ -189,7 +376,6 @@ public class StudentFileApplication {
 
     // EFFECTS: print current student info and show command list
     private void returnToCurrentStudent(Student student) {
-        student.printInfo();
         commandChoice(student);
     }
 
@@ -225,8 +411,33 @@ public class StudentFileApplication {
         returnToCurrentStudent(student);
     }
 
-    private void editAddress(Student student) {
-        // stub
+    // MODIFIES: student
+    // EFFECTS: change student address information
+    private void editStudentAddress(Student student) {
+        Address address = createNewAddress();
+        student.changeStudentAddress(address);
+        returnToCurrentStudent(student);
+    }
+
+    // EFFECTS: create a new address and return it
+    private Address createNewAddress() {
+        Address address = new Address();
+        System.out.println("Input street address: ");
+        String streetAddress = input.next();
+        address.changeStreetAddress(streetAddress);
+        System.out.println("Input unit number (if applicable) or space: ");
+        String unitNum = input.next();
+        address.changeUnitNum(unitNum);
+        System.out.println("Input city: ");
+        String city = input.next();
+        address.changeCity(city);
+        System.out.println("Input provence: ");
+        String provence = input.next();
+        address.changeProvence(provence);
+        System.out.println("Input postal code");
+        String postalCode = input.next();
+        address.changePostalCode(postalCode);
+        return address;
     }
 
     // MODIFIES: student
