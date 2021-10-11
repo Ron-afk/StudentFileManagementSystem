@@ -147,9 +147,9 @@ public class StudentFileApplication {
             coursesDetail(student);
         } else if (command.equals("ac")) {
             addCourse(student);
+            //returnToCurrentStudent(student);
         } else {
             System.out.println("Return to student List");
-            showStudentList();
         }
     }
 
@@ -159,7 +159,7 @@ public class StudentFileApplication {
     private void addCourse(Student student) {
         Course course = initiateCourse();
         student.addCourse(course);
-        returnToCurrentStudent(student);
+
     }
 
     // EFFECTS: create a course
@@ -217,9 +217,9 @@ public class StudentFileApplication {
             } else if (command.equals("plc")) {
                 printFutureCourse(student);
             }
-        } finally {
-            returnToCurrentStudent(student);
-        }
+        } //finally {
+           // returnToCurrentStudent(student);
+       // }
     }
 
     // EFFECTS: print all future courses
@@ -362,7 +362,7 @@ public class StudentFileApplication {
         Address address = createNewAddress();
         ec.changeAddress(address);
         student.changeEmergencyContactor(ec);
-        returnToCurrentStudent(student);
+        //returnToCurrentStudent(student);
     }
 
     // MODIFIES: student
@@ -371,13 +371,13 @@ public class StudentFileApplication {
         System.out.println("Input student number: ");
         String studentId = input.next();
         student.changeStudentNumber(studentId);
-        returnToCurrentStudent(student);
+        //returnToCurrentStudent(student);
     }
 
     // EFFECTS: print current student info and show command list
-    private void returnToCurrentStudent(Student student) {
-        commandChoice(student);
-    }
+//    private void returnToCurrentStudent(Student student) {
+//        commandChoice(student);
+//    }
 
     // MODIFIES: student
     // EFFECTS: change student's email address
@@ -386,7 +386,7 @@ public class StudentFileApplication {
         String email = input.next();
         if (email.matches("^(.+)@(.+)$")) {
             student.changeEmail(email);
-            returnToCurrentStudent(student);
+            //returnToCurrentStudent(student);
         } else {
             System.out.println("Invalid email address");
             editEmail(student);
@@ -399,7 +399,7 @@ public class StudentFileApplication {
         System.out.println("Input student's nationality: ");
         String nationality = input.next();
         student.changeNationality(nationality);
-        returnToCurrentStudent(student);
+        //returnToCurrentStudent(student);
     }
 
     // MODIFIES: student
@@ -408,7 +408,7 @@ public class StudentFileApplication {
         System.out.println("Input student's phone number");
         String phoneNum = input.next();
         student.changePhoneNum(phoneNum);
-        returnToCurrentStudent(student);
+        //returnToCurrentStudent(student);
     }
 
     // MODIFIES: student
@@ -416,7 +416,7 @@ public class StudentFileApplication {
     private void editStudentAddress(Student student) {
         Address address = createNewAddress();
         student.changeStudentAddress(address);
-        returnToCurrentStudent(student);
+        //returnToCurrentStudent(student);
     }
 
     // EFFECTS: create a new address and return it
@@ -448,7 +448,6 @@ public class StudentFileApplication {
         System.out.println("Input first name: ");
         String firstName = input.next();
         student.changeName(firstName,lastName);
-        returnToCurrentStudent(student);
+        //returnToCurrentStudent(student);
     }
-
 }
