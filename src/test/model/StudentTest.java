@@ -13,7 +13,7 @@ class StudentTest {
     private Course c1 = new Course("Phys 12");
     private Course c2 = new Course("Engl 12");
     private Course c3 = new Course("Chem 12");
-
+    private Course c4 = new Course("CHIN 12");
     private Student student;
     @BeforeEach
     public void setUp() {
@@ -87,7 +87,7 @@ class StudentTest {
         student.addCourse(c2);
         student.addCourse(c3);
         List<Course> courses = new ArrayList<>();
-        courses.add(c2);
+        courses.add(c3);
         assertEquals(courses,student.getPlannedCourses());
     }
 
@@ -96,11 +96,13 @@ class StudentTest {
         c1.changeStatus(0);
         c2.changeStatus(1);
         c3.changeStatus(2);
+        c4.changeStatus(3);
         student.addCourse(c1);
         student.addCourse(c2);
         student.addCourse(c3);
+        student.addCourse(c4);
         List<Course> courses = new ArrayList<>();
-        courses.add(c3);
+        courses.add(c4);
         assertEquals(courses,student.getFutureCourse());
     }
 
@@ -115,5 +117,61 @@ class StudentTest {
         List<Course> courses = new ArrayList<>();
         courses.add(c1);
         assertEquals(courses,student.getFinishedCourses());
+    }
+
+    @Test
+    public void getAllCoursesTest() {
+        c1.changeStatus(0);
+        c2.changeStatus(1);
+        c3.changeStatus(2);
+        c4.changeStatus(3);
+        student.addCourse(c1);
+        student.addCourse(c2);
+        student.addCourse(c3);
+        student.addCourse(c4);
+
+        List<Course> courses = new ArrayList<>();
+        courses.add(c1);
+        courses.add(c2);
+        courses.add(c3);
+        courses.add(c4);
+        assertEquals(courses,student.getAllCourses());
+    }
+
+    @Test
+    public void gradeAvgTest() {
+        c1.changeStatus(0);
+        c2.changeStatus(0);
+        c3.changeStatus(1);
+        c4.changeStatus(0);
+
+        c1.changeGrade(100);
+        c2.changeGrade(75);
+        c3.changeGrade(50);
+        c4.changeGrade(80);
+
+        student.addCourse(c1);
+        student.addCourse(c2);
+        student.addCourse(c3);
+        student.addCourse(c4);
+        assertEquals(85,student.gradeAvg(student.getAllCourses()));
+    }
+
+    @Test
+    public void getCurrentCoursesTest() {
+        c1.changeStatus(0);
+        c2.changeStatus(1);
+        c3.changeStatus(1);
+        c4.changeStatus(3);
+
+        student.addCourse(c1);
+        student.addCourse(c2);
+        student.addCourse(c3);
+        student.addCourse(c4);
+
+        List<Course> courses = new ArrayList<>();
+        courses.add(c2);
+        courses.add(c3);
+        assertEquals(courses,student.getCurrentCourses());
     }
 }
