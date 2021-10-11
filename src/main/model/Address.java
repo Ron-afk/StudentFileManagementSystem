@@ -17,10 +17,20 @@ public class Address {
         this.postalCode = postalCode;
     }
 
+    // EFFECTS: get the postal code
+    public String getPostalCode() {
+        return postalCode;
+    }
+
     // MODIFIES: this
     // EFFECTS: change address city
     public void changeCity(String city) {
         this.city = city;
+    }
+
+    // EFFECTS: get city
+    public String getCity() {
+        return city;
     }
 
     // MODIFIES: this
@@ -29,16 +39,31 @@ public class Address {
         this.provence = provence;
     }
 
+    // EFFECTS: get provence
+    public String getProvence() {
+        return provence;
+    }
+
     // MODIFIES: this
     // EFFECTS: change unitNum (if applicable)
     public void changeUnitNum(String unitNum) {
         this.unitNum = unitNum;
     }
 
+    // EFFECTS: get unit number
+    public String getUnitNum() {
+        return unitNum;
+    }
+
     // MODIFIES: this
     // EFFECTS: change street address
     public void changeStreetAddress(String streetAddress) {
         this.streetAddress = streetAddress;
+    }
+
+    // EFFECTS: get street address
+    public String getStreetAddress() {
+        return streetAddress;
     }
 
     // EFFECTS: print out address
