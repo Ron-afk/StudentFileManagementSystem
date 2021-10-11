@@ -59,11 +59,14 @@ public class EmergencyContactor {
     }
 
     // EFFECTS: print out emergency contactor's information
-    public void print() {
+    /*
+    public void emergencyContactorPrint() {
         System.out.println("Name: " + name);
         System.out.println("Phone Number: " + phoneNum);
         System.out.println("Relation with student: " + relation);
         System.out.print("Address: ");
         address.print();
     }
+
+     */
 }

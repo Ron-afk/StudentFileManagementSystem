@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static sun.util.locale.LocaleUtils.isAlphaNumericString;
-
 
 public class StudentFileApplication {
     private final int maxLoad = 4;
@@ -105,9 +103,58 @@ public class StudentFileApplication {
             System.out.println("Return to previous page");
         } else {
             Student student = students.get(i - 1);
-            student.printInfo();
+            studentPrintInfo(student);
             commandChoice(student);
         }
+    }
+
+    // EFFECTS: print student's info
+    public void studentPrintInfo(Student s) {
+        System.out.println("First Name: " + s.getFirstName());
+        System.out.println("Last Name: " + s.getLastName());
+        System.out.println("PEN: " + s.getStudentNumber());
+        System.out.println("Address: ");
+        addressPrint(s.getAddress());
+        System.out.println("Phone Number: " + s.getPhoneNum());
+        System.out.println("Email Address: " + s.getEmail());
+        System.out.println("Emergency Contactor: ");
+        emergencyContactorPrint(s.getEmergencyContactor());
+        System.out.println("Course History: ");
+        for (Course c : s.getAllCourses()) {
+            coursePrintSimple(c);
+        }
+    }
+
+    // EFFECTS: print out address
+    public void addressPrint(Address address) {
+        System.out.println(address.getUnitNum() + " " + address.getStreetAddress());
+        System.out.println(address.getCity() + "  " + address.getProvence());
+        System.out.println(address.getPostalCode());
+    }
+
+    // EFFECT: print simplified course info
+    public void coursePrintSimple(Course c) {
+        System.out.println("Course name: " + c.getCourseName());
+        System.out.print("Status: ");
+        int status = c.getStatus();
+        if (status == 0) {
+            System.out.println("Finished");
+        } else if (status == 1) {
+            System.out.println("Currently taking");
+        } else if (status == 2) {
+            System.out.println("Planned for next term");
+        } else {
+            System.out.println("Planned for future");
+        }
+    }
+
+    // EFFECTS: print emergency contactor information
+    public void emergencyContactorPrint(EmergencyContactor ec) {
+        System.out.println("Name: " + ec.getName());
+        System.out.println("Phone Number: " + ec.getPhoneNum());
+        System.out.println("Relation with student: " + ec.getRelation());
+        System.out.print("Address: ");
+        addressPrint(ec.getAddress());
     }
 
     // EFFECTS: show all command options to operate on the student
@@ -191,12 +238,12 @@ public class StudentFileApplication {
         int i = 0;
         for (Course c : courses) {
             System.out.println((i + 1) + " --> ");
-            c.printSimple();
+            coursePrintSimple(c);
             i++;
         }
         System.out.println("\nInput a number to visit a course or following command: ");
         courseListCommand();
-        courseListCommandProcess(courses,student);
+        courseListCommandProcess(courses, student);
     }
 
     // MODIFIES: courses, student
@@ -206,7 +253,7 @@ public class StudentFileApplication {
         try {
             int i = Integer.valueOf(command);
             Course c = courses.get(i - 1);
-            displayCourse(c,student);
+            displayCourse(c, student);
         } catch (Exception e) {
             if (command.equals("a")) {
                 addCourse(student);
@@ -218,19 +265,42 @@ public class StudentFileApplication {
                 printFutureCourse(student);
             }
         } //finally {
-           // returnToCurrentStudent(student);
-       // }
+        // returnToCurrentStudent(student);
+        // }
     }
 
     // EFFECTS: print all future courses
     private void printFutureCourse(Student student) {
-        List<Course> futureCourse  = student.getFutureCourse();
+        List<Course> futureCourse = student.getFutureCourse();
         if (futureCourse.size() == 0) {
             System.out.println("No future planned course");
         } else {
             for (Course c : futureCourse) {
-                c.print();
+                coursePrint(c);
             }
+        }
+    }
+
+    // EFFECTS: print course detail
+    public void coursePrint(Course c) {
+        System.out.println("Course name: " + c.getCourseName());
+        System.out.print("Status: ");
+        int status = c.getStatus();
+        if (status == 0) {
+            System.out.println("Finished");
+            System.out.println("Finish time: " + c.getFinishTime());
+            System.out.println("Grade: " + c.getGrade());
+            System.out.println("Teacher: " + c.getTeacher());
+        } else if (status == 1) {
+            System.out.println("Currently taking");
+            System.out.println("Time block: " + c.getTimeBlock());
+            System.out.println("Teacher: " + c.getTeacher());
+        } else if (status == 2) {
+            System.out.println("Planned for next term");
+            System.out.println("Time block: " + c.getTimeBlock());
+            System.out.println("Teacher: " + c.getTeacher());
+        } else {
+            System.out.println("Planned for future");
         }
     }
 
@@ -250,10 +320,10 @@ public class StudentFileApplication {
 
     // MODIFIES: courses
     // EFFECTS: show course and edit course info based on input
-    private void displayCourse(Course c,Student student) {
-        c.print();
+    private void displayCourse(Course c, Student student) {
+        coursePrint(c);
         courseCommand();
-        courseCommandProcess(c,student);
+        courseCommandProcess(c, student);
     }
 
     // EFFECTS: show command option to operate on course
@@ -269,20 +339,20 @@ public class StudentFileApplication {
     }
 
     // EFFECTS: process course command
-    private void courseCommandProcess(Course c,Student student) {
+    private void courseCommandProcess(Course c, Student student) {
         String command = input.next();
         if (command.equals("n")) {
-            editCourseName(c,student);
+            editCourseName(c, student);
         } else if (command.equals("g")) {
-            editCourseGrade(c,student);
+            editCourseGrade(c, student);
         } else if (command.equals("s")) {
-            editCourseStatus(c,student);
+            editCourseStatus(c, student);
         } else if (command.equals("f")) {
-            editCourseFinishTime(c,student);
+            editCourseFinishTime(c, student);
         } else if (command.equals("t")) {
-            editCourseTimeBlock(c,student);
+            editCourseTimeBlock(c, student);
         } else if (command.equals("p")) {
-            editCourseTeacher(c,student);
+            editCourseTeacher(c, student);
         } else {
             coursesDetail(student);
         }
@@ -294,7 +364,7 @@ public class StudentFileApplication {
         System.out.println("Input teacher's name: ");
         String teacher = input.next();
         c.changeTeacher(teacher);
-        displayCourse(c,student);
+        displayCourse(c, student);
     }
 
     // MODIFIES: course, student
@@ -303,7 +373,7 @@ public class StudentFileApplication {
         System.out.println("Input 1 - 4 for time block");
         int timeBlock = Integer.valueOf(input.next());
         c.changeTimeBlock(timeBlock);
-        displayCourse(c,student);
+        displayCourse(c, student);
     }
 
     // MODIFIES: course, student
@@ -312,7 +382,7 @@ public class StudentFileApplication {
         System.out.println("Input finish time: ");
         String finishTime = input.next();
         c.changeFinishTime(finishTime);
-        displayCourse(c,student);
+        displayCourse(c, student);
     }
 
     // MODIFIES: course, student
@@ -325,26 +395,26 @@ public class StudentFileApplication {
         System.out.println("\t3 -> planned for future");
         int status = Integer.valueOf(input.next());
         c.changeStatus(status);
-        displayCourse(c,student);
+        displayCourse(c, student);
     }
 
     // MODIFIES: course
     // EFFECTS: change course grade
-    private void editCourseGrade(Course c,Student student) {
+    private void editCourseGrade(Course c, Student student) {
         System.out.println("Input course grade: ");
         String grade = input.next();
         Double num = Double.valueOf(grade);
         c.changeGrade(num);
-        displayCourse(c,student);
+        displayCourse(c, student);
     }
 
     // MODIFIES: course
     // EFFECTS: change course name
-    private void editCourseName(Course c,Student s) {
+    private void editCourseName(Course c, Student s) {
         System.out.println("Input course name: ");
         String courseName = input.next();
         c.changeCourseName(courseName);
-        displayCourse(c,s);
+        displayCourse(c, s);
     }
 
 
@@ -447,7 +517,7 @@ public class StudentFileApplication {
         String lastName = input.next();
         System.out.println("Input first name: ");
         String firstName = input.next();
-        student.changeName(firstName,lastName);
+        student.changeName(firstName, lastName);
         //returnToCurrentStudent(student);
     }
 }

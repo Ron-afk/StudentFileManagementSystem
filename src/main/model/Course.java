@@ -59,7 +59,8 @@ public class Course {
     }
 
     // EFFECTS: print course detail
-    public void print() {
+    /*
+    public void coursePrint() {
         System.out.println("Course name: " + courseName);
         System.out.print("Status: ");
         if (status == 0) {
@@ -80,8 +81,11 @@ public class Course {
         }
     }
 
+     */
+
     // EFFECT: print simplified course info
-    public void printSimple() {
+    /*
+    public void coursePrintSimple() {
         System.out.println("Course name: " + courseName);
         System.out.print("Status: ");
         if (status == 0) {
@@ -94,6 +98,7 @@ public class Course {
             System.out.println("Planned for future");
         }
     }
+     */
 
     // EFFECTS: get status of the course
     public int getStatus() {

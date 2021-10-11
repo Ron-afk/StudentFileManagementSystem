@@ -67,9 +67,12 @@ public class Address {
     }
 
     // EFFECTS: print out address
-    public void print() {
+    /*
+    public void addressPrint() {
         System.out.println(unitNum + " " + streetAddress);
         System.out.println(city + "  " + provence);
         System.out.println(postalCode);
     }
+
+     */
 }

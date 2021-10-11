@@ -179,7 +179,8 @@ public class Student {
         return futureCourse;
     }
 
-    public void printInfo() {
+    /*
+    public void studentPrintInfo() {
         System.out.println("First Name: " + firstName);
         System.out.println("Last Name: " + lastName);
         System.out.println("PEN: " + studentNumber);
@@ -194,4 +195,5 @@ public class Student {
             c.printSimple();
         }
     }
+     */
 }
