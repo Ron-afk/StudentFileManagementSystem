@@ -43,3 +43,13 @@ academic history.
 
 #### Course schedule for current term and following term (if applicable)
 
+## User Story
+- As a user I want to add new student into the system
+- As a user I want to view all students currently in the system, and choose anyone to view his or her detailed information
+- As a user I want to edit basic information of a student including his or her address, email address, phone number, PEN, and emgency contactor's information
+- As a user I want to view student's course history
+- As a user I want to add a new course to a student
+- As a user I want to get student's current average grades
+- As a user I want to get student's schedule for this term including course name and time block for each course
+- As a user I want to edit course information for a student, I may need to change course name, time block, teacher name, and so on
+
