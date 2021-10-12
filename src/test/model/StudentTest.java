@@ -86,9 +86,13 @@ class StudentTest {
         student.addCourse(c1);
         student.addCourse(c2);
         student.addCourse(c3);
-        List<Course> courses = new ArrayList<>();
-        courses.add(c3);
-        assertEquals(courses,student.getPlannedCourses());
+        List<Course> courseListTest = new ArrayList<>();
+        List<Course> courseList = new ArrayList<>();
+        courseList.add(c1);
+        courseList.add(c2);
+        courseList.add(c3);
+        courseListTest.add(c3);
+        assertEquals(courseListTest,student.getPlannedCourses(courseList));
     }
 
     @Test
@@ -101,9 +105,14 @@ class StudentTest {
         student.addCourse(c2);
         student.addCourse(c3);
         student.addCourse(c4);
-        List<Course> courses = new ArrayList<>();
-        courses.add(c4);
-        assertEquals(courses,student.getFutureCourse());
+        List<Course> courseListTest = new ArrayList<>();
+        courseListTest.add(c4);
+        List<Course> courseList = new ArrayList<>();
+        courseList.add(c1);
+        courseList.add(c2);
+        courseList.add(c3);
+        courseList.add(c4);
+        assertEquals(courseListTest,student.getFutureCourse(courseList));
     }
 
     @Test
@@ -169,9 +178,14 @@ class StudentTest {
         student.addCourse(c3);
         student.addCourse(c4);
 
-        List<Course> courses = new ArrayList<>();
-        courses.add(c2);
-        courses.add(c3);
-        assertEquals(courses,student.getCurrentCourses());
+        List<Course> courseListTest = new ArrayList<>();
+        courseListTest.add(c2);
+        courseListTest.add(c3);
+        List<Course> courseList= new ArrayList<>();
+        courseList.add(c1);
+        courseList.add(c2);
+        courseList.add(c3);
+        courseList.add(c4);
+        assertEquals(courseListTest,student.getCurrentCourses(courseList));
     }
 }

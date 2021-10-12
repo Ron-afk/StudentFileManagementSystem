@@ -117,7 +117,7 @@ public class Student {
     }
 
     // EFFECTS: calculate grade average for the student
-    public double gradeAvg(List<Course> courses) {
+    public static double gradeAvg(List<Course> courses) {
         int count = 0;
         double sum = 0;
         for (Course c : courses) {
@@ -147,7 +147,7 @@ public class Student {
     }
 
     // EFFECTS：get all planned courses for next term
-    public List<Course> getPlannedCourses() {
+    public static List<Course> getPlannedCourses(List<Course> courses) {
         List<Course> plannedCourses = new ArrayList<>();
         for (Course c : courses) {
             if (c.getStatus() == 2) {
@@ -158,7 +158,7 @@ public class Student {
     }
 
     // EFFECTS: get all current courses
-    public List<Course> getCurrentCourses() {
+    public static List<Course> getCurrentCourses(List<Course> courses) {
         List<Course> currentCourses = new ArrayList<>();
         for (Course c : courses) {
             if (c.getStatus() == 1) {
@@ -169,7 +169,7 @@ public class Student {
     }
 
     // EFFECTS: get all planned courses for future
-    public List<Course> getFutureCourse() {
+    public static List<Course> getFutureCourse(List<Course> courses) {
         List<Course> futureCourse = new ArrayList<>();
         for (Course c : courses) {
             if (c.getStatus() == 3) {

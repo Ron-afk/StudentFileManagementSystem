@@ -2,6 +2,7 @@ package ui;
 
 public class Main {
     public static void main(String[] args) {
-        new StudentFileApplication();
+//        new StudentFileApplication();
+        new ApplicationStarter();
     }
 }

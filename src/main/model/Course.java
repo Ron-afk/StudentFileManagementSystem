@@ -58,47 +58,6 @@ public class Course {
         this.status = status;
     }
 
-    // EFFECTS: print course detail
-    /*
-    public void coursePrint() {
-        System.out.println("Course name: " + courseName);
-        System.out.print("Status: ");
-        if (status == 0) {
-            System.out.println("Finished");
-            System.out.println("Finish time: " + finishTime);
-            System.out.println("Grade: " + grade);
-            System.out.println("Teacher: " + teacher);
-        } else if (status == 1) {
-            System.out.println("Currently taking");
-            System.out.println("Time block: " + timeBlock);
-            System.out.println("Teacher: " + teacher);
-        } else if (status == 2) {
-            System.out.println("Planned for next term");
-            System.out.println("Time block: " + timeBlock);
-            System.out.println("Teacher: " + teacher);
-        } else {
-            System.out.println("Planned for future");
-        }
-    }
-
-     */
-
-    // EFFECT: print simplified course info
-    /*
-    public void coursePrintSimple() {
-        System.out.println("Course name: " + courseName);
-        System.out.print("Status: ");
-        if (status == 0) {
-            System.out.println("Finished");
-        } else if (status == 1) {
-            System.out.println("Currently taking");
-        } else if (status == 2) {
-            System.out.println("Planned for next term");
-        } else {
-            System.out.println("Planned for future");
-        }
-    }
-     */
 
     // EFFECTS: get status of the course
     public int getStatus() {
