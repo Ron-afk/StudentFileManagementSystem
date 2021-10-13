@@ -1,6 +1,5 @@
 package ui;
 
-import exception.InvalidInputException;
 import model.Student;
 
 import java.util.List;
@@ -32,7 +31,7 @@ public class StudentListPage {
             } else {
                 try {
                     selectStudent(command);
-                } catch (InvalidInputException e) {
+                } catch (Exception e) {
                     System.out.println("Invalid input... "
                             + "Please reselect number to view, or press q to back to main page");
                 }
@@ -61,13 +60,13 @@ public class StudentListPage {
     }
 
     // EFFECTS: select a student to show his/her detailed info
-    private void selectStudent(String command) throws InvalidInputException {
+    private void selectStudent(String command) throws Exception {
         try {
             int i = Integer.valueOf(command);
             Student student = students.get(i - 1);
             new StudentPage(student);
         } catch (Exception e) {
-            throw new InvalidInputException();
+            throw new Exception();
         }
     }
 

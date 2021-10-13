@@ -1,6 +1,5 @@
 package ui;
 
-import exception.InvalidInputException;
 import model.Student;
 
 import java.util.ArrayList;
