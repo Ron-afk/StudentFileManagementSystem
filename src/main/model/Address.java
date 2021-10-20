@@ -1,12 +1,15 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // represent address
-public class Address {
-    private String postalCode;
-    private String city;
-    private String provence;
-    private String unitNum;
-    private String streetAddress;
+public class Address implements Writable {
+    private String postalCode = "";
+    private String city = "";
+    private String provence = "";
+    private String unitNum = "";
+    private String streetAddress = "";
 
     // EFFECTS: initiate an address
     public Address() { }
@@ -66,13 +69,14 @@ public class Address {
         return streetAddress;
     }
 
-    // EFFECTS: print out address
-    /*
-    public void addressPrint() {
-        System.out.println(unitNum + " " + streetAddress);
-        System.out.println(city + "  " + provence);
-        System.out.println(postalCode);
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("unit number",unitNum);
+        json.put("street address", streetAddress);
+        json.put("city", city);
+        json.put("provence",provence);
+        json.put("postal code",postalCode);
+        return json;
     }
-
-     */
 }

@@ -1,11 +1,14 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // represent emergency contactor information
-public class EmergencyContactor {
+public class EmergencyContactor implements Writable {
     private Address address;
-    private String name;
-    private String phoneNum;
-    private String relation;
+    private String name = "";
+    private String phoneNum = "";
+    private String relation = "";
 
     // MODIFIES: this
     // EFFECTS: set an emergency contactor with name
@@ -58,15 +61,13 @@ public class EmergencyContactor {
         return relation;
     }
 
-    // EFFECTS: print out emergency contactor's information
-    /*
-    public void emergencyContactorPrint() {
-        System.out.println("Name: " + name);
-        System.out.println("Phone Number: " + phoneNum);
-        System.out.println("Relation with student: " + relation);
-        System.out.print("Address: ");
-        address.print();
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name",name);
+        json.put("address",address.toJson());
+        json.put("phone number",phoneNum);
+        json.put("relation",relation);
+        return json;
     }
-
-     */
 }

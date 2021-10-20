@@ -23,17 +23,23 @@ public class StudentListPage {
         String command = null;
 
         while (keepGoing) {
+            System.out.println("\nInput a number to view detailed student's information ");
             showStudentList();
+            System.out.println("\nPress d to delete a student");
+            System.out.println("\nPress q to back to main page");
             command = input.next();
             command = command.toLowerCase();
             if (command.equals("q")) {
                 keepGoing = false;
             } else {
                 try {
-                    selectStudent(command);
+                    new StudentPage(selectStudent(command));
                 } catch (Exception e) {
-                    System.out.println("Invalid input... "
-                            + "Please reselect number to view, or press q to back to main page");
+                    if (command.equals("d")) {
+                        removeStudent();
+                    } else {
+                        System.out.println("Invalid input...");
+                    }
                 }
             }
         }
@@ -51,8 +57,6 @@ public class StudentListPage {
     // EFFECTS: show all students in list
     public void showStudentList() {
         int i = 1;
-        System.out.println("\nInput a number to view detailed student's information "
-                + "or press q to back to the main page.");
         for (Student s : students) {
             System.out.println("\t" + i + " -> " + s.getLastName() + "  " + s.getFirstName());
             i++;
@@ -60,15 +64,32 @@ public class StudentListPage {
     }
 
     // EFFECTS: select a student to show his/her detailed info
-    private void selectStudent(String command) throws Exception {
+    private Student selectStudent(String command) throws Exception {
         try {
             int i = Integer.valueOf(command);
             Student student = students.get(i - 1);
-            new StudentPage(student);
+            return student;
         } catch (Exception e) {
             throw new Exception();
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: show student list and choose which to delete
+    private void removeStudent() {
+        showStudentList();
+        System.out.println("Input a number to choose the student you want to delete");
+        String command = input.next();
+        try {
+            remove(selectStudent(command));
+        } catch (Exception e) {
+            System.out.println("Invalid input...");
+        }
+    }
 
+    // MODIFIES: this
+    // EFFECTS: remove student from student list
+    private void remove(Student student) {
+        students.remove(student);
+    }
 }

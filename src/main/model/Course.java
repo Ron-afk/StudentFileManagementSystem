@@ -1,11 +1,14 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // represent course information
-public class Course {
-    private String courseName;
-    private String teacher;
+public class Course implements Writable {
+    private String courseName = "";
+    private String teacher = "";
     private int timeBlock;
-    private String finishTime;
+    private String finishTime = "";
     private double grade;
     private int status; // default as finished course
 
@@ -87,5 +90,17 @@ public class Course {
     // EFFECTS: get course's finish time
     public String getFinishTime() {
         return finishTime;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("course name",courseName);
+        json.put("finish time",finishTime);
+        json.put("grade",grade);
+        json.put("status",status);
+        json.put("teacher",teacher);
+        json.put("time block",timeBlock);
+        return json;
     }
 }

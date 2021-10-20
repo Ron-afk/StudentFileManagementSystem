@@ -1,18 +1,22 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represent student info including basic information and course information
-public class Student {
-    private String firstName;
-    private String lastName;
-    private String studentNumber;
+public class Student implements Writable {
+    private String firstName = "";
+    private String lastName = "";
+    private String studentNumber = "";
     private Address address;
     private List<Course> courses;
-    private String nationality;
-    private String email;
-    private String phoneNum;
+    private String nationality = "";
+    private String email = "";
+    private String phoneNum = "";
     private EmergencyContactor emergencyContactor;
 
     // REQUIRES: last name and first name can not be empty string
@@ -179,21 +183,28 @@ public class Student {
         return futureCourse;
     }
 
-    /*
-    public void studentPrintInfo() {
-        System.out.println("First Name: " + firstName);
-        System.out.println("Last Name: " + lastName);
-        System.out.println("PEN: " + studentNumber);
-        System.out.println("Address: ");
-        address.print();
-        System.out.println("Phone Number: " + phoneNum);
-        System.out.println("Email Address: " + email);
-        System.out.println("Emergency Contactor: ");
-        emergencyContactor.print();
-        System.out.println("Course History: ");
-        for (Course c : courses) {
-            c.printSimple();
-        }
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("First Name", firstName);
+        json.put("Last Name",lastName);
+        json.put("email",email);
+        json.put("nationality",nationality);
+        json.put("phone number",phoneNum);
+        json.put("student number",studentNumber);
+        json.put("address", address.toJson());
+        json.put("emergency contactor",emergencyContactor.toJson());
+        json.put("course list",coursesToJson());
+        return json;
     }
-     */
+
+    // EFFECTS: return courses in this student wo a JSON array
+    public JSONArray coursesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Course c: courses) {
+            jsonArray.put(c.toJson());
+        }
+        return jsonArray;
+    }
 }
