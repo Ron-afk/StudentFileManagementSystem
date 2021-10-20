@@ -1,0 +1,35 @@
+[{
+    "course list": [{
+        "course name": "phys12",
+        "teacher": "",
+        "finish time": "",
+        "grade": 0,
+        "time block": 0,
+        "status": 0
+    }],
+    "address": {
+        "city": "",
+        "provence": "",
+        "postal code": "",
+        "street address": "",
+        "unit number": ""
+    },
+    "nationality": "",
+    "First Name": "aaa",
+    "emergency contactor": {
+        "address": {
+            "city": "",
+            "provence": "",
+            "postal code": "",
+            "street address": "",
+            "unit number": ""
+        },
+        "name": "",
+        "phone number": "",
+        "relation": ""
+    },
+    "Last Name": "bbb",
+    "phone number": "",
+    "email": "",
+    "student number": ""
+}]

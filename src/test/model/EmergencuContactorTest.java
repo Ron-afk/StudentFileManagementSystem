@@ -29,14 +29,14 @@ public class EmergencuContactorTest {
 
     @Test
     public void changeRelationTest() {
-        assertEquals(null,ec.getRelation());
+        assertEquals("",ec.getRelation());
         ec.changeRelation("Mother");
         assertEquals("Mother",ec.getRelation());
     }
 
     @Test
     public void changePhoneNumTest() {
-        assertEquals(null,ec.getPhoneNum());
+        assertEquals("",ec.getPhoneNum());
         ec.changePhoneNum("123456");
         assertEquals("123456",ec.getPhoneNum());
     }

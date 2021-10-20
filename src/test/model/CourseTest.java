@@ -22,7 +22,7 @@ public class CourseTest {
 
     @Test
     public void changeTeacherTest() {
-        assertEquals(null,c.getTeacher());
+        assertEquals("",c.getTeacher());
         c.changeTeacher("Fan");
         assertEquals("Fan",c.getTeacher());
     }
@@ -36,7 +36,7 @@ public class CourseTest {
 
     @Test
     public void changeFinishTimeTest() {
-        assertEquals(null,c.getFinishTime());
+        assertEquals("",c.getFinishTime());
         c.changeFinishTime("2020W1");
         assertEquals("2020W1",c.getFinishTime());
     }
