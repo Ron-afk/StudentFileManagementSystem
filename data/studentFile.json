@@ -1,1 +1,45 @@
-[]
+[{
+    "course list": [
+        {
+            "course name": "phys12",
+            "teacher": "Fan",
+            "finish time": "2019W",
+            "grade": 100,
+            "time block": 0,
+            "status": 0
+        },
+        {
+            "course name": "chem12",
+            "teacher": "",
+            "finish time": "",
+            "grade": 0,
+            "time block": 0,
+            "status": 1
+        }
+    ],
+    "address": {
+        "city": "Vancouver",
+        "provence": "BC",
+        "postal code": "V5X0H5",
+        "street address": "433 Marine Dr",
+        "unit number": "2001"
+    },
+    "nationality": "",
+    "First Name": "rang",
+    "emergency contactor": {
+        "address": {
+            "city": "",
+            "provence": "",
+            "postal code": "",
+            "street address": "",
+            "unit number": ""
+        },
+        "name": "",
+        "phone number": "",
+        "relation": ""
+    },
+    "Last Name": "xiao",
+    "phone number": "",
+    "email": "",
+    "student number": ""
+}]

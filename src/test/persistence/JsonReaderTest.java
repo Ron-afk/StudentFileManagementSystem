@@ -21,6 +21,16 @@ public class JsonReaderTest extends JsonTest {
             // pass
         }
     }
+    @Test
+    void testReaderEmptyStudentList() {
+        JsonReader reader = new JsonReader("./data/testReaderEmptyStudentList.json");
+        try {
+            List<Student> studentList = reader.read();
+            assertEquals(0,studentList.size());
+        } catch (IOException e) {
+            fail("Couldn't read from file");
+        }
+    }
 
     @Test
     void testReaderGeneralStudentList() {

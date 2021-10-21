@@ -25,22 +25,22 @@ public class JsonWriterTest extends JsonTest{
         }
     }
 
-//    @Test
-//    void testWriteEmptyStudentList() {
-//        try {
-//            List<Student> studentList = new ArrayList<>();
-//            JsonWriter writer = new JsonWriter("./data/testWriterEmptyStudentList.json");
-//            writer.open();
-//            writer.write(studentList);
-//            writer.close();
-//
-//            JsonReader reader = new JsonReader("./data/testWriterEmptyStudentList.json\"");
-//            studentList = reader.read();
-//            assertEquals(0,studentList.size());
-//        } catch (IOException e) {
-//            fail("Exception should not have been thrown");
-//        }
-//    }
+    @Test
+    void testWriteEmptyStudentList() {
+        try {
+            List<Student> studentList = new ArrayList<>();
+            JsonWriter writer = new JsonWriter("./data/testReaderEmptyStudentList.json");
+            writer.open();
+            writer.write(studentList);
+            writer.close();
+
+            JsonReader reader = new JsonReader("./data/testReaderEmptyStudentList.json");
+            studentList = reader.read();
+            assertEquals(0,studentList.size());
+        } catch (IOException e) {
+            fail("Exception should not have been thrown");
+        }
+    }
 
     @Test
     void testWriterGeneralStudentList() {
