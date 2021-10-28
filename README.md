@@ -52,4 +52,7 @@ academic history.
 - As a user I want to get student's current average grades
 - As a user I want to get student's schedule for this term including course name and time block for each course
 - As a user I want to edit course information for a student, I may need to change course name, time block, teacher name, and so on
+- As a user I want to save data I inputted 
+- As a user I want to load pre-saved data
+- As a user I want to delete certain student from the list 
 
