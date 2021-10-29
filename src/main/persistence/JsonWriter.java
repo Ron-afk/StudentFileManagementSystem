@@ -24,6 +24,7 @@ public class JsonWriter {
     // MODIFIES: this
     // EFFECTS: opens writer; throws FileNotFoundException if destination file cannot
     // be opened for writing
+    // citation: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     public void open() throws FileNotFoundException {
         writer = new PrintWriter(new File(destination));
     }

@@ -34,6 +34,7 @@ public class JsonReader {
     }
 
     // EFFECTS: read source file as string and return it
+    // citation: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
         try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
@@ -43,6 +44,7 @@ public class JsonReader {
     }
 
     // EFFECTS: parses student list from JSON array and return it
+    // citation: https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     private List<Student> parseStudentList(JSONArray jsonArray) {
         List<Student> studentList = new ArrayList<>();
         for (Object json : jsonArray) {
