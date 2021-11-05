@@ -28,6 +28,8 @@ public class MainPageUI implements ActionListener {
     private List<Student> studentList;
     private JsonReader jsonReader;
     private JsonWriter jsonWriter;
+    private JPanel panel;
+    private JScrollPane infoPane;
     private static final String JSON_STORE = "./data/studentFile.json";
 
     // EFFECTS: create a main page frame
@@ -41,11 +43,14 @@ public class MainPageUI implements ActionListener {
         mainPage.setTitle(title);
         mainPage.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainPage.setIconImage(initIcon.getImage());
-//        mainPage.setResizable(false);
         mainPage.setLayout(new BorderLayout());
 
         addMenuBar();
         addButton();
+        if (panel != null) {
+            panel.setVisible(false);
+            infoPane.setVisible(false);
+        }
         presentInfo();
 
 
@@ -79,6 +84,10 @@ public class MainPageUI implements ActionListener {
             saveStudents();
         } else if (e.getSource() == loadItem) {
             loadInfo();
+            if (panel != null) {
+                panel.setVisible(false);
+                infoPane.setVisible(false);
+            }
             presentInfo();
         }
     }
@@ -96,7 +105,8 @@ public class MainPageUI implements ActionListener {
     }
 
     // MODIFIES: this
-    // EFFECTS: loads student list from file
+    // EFFECTS: loads
+    // student list from file
     private void loadInfo() {
         try {
             studentList = jsonReader.read();
@@ -110,10 +120,9 @@ public class MainPageUI implements ActionListener {
     private void addButton() {
         addNewButton = new JButton(new AddNewStudentAction());
         addNewButton.setSize(150, 25);
-//        addNewButton.setBounds(WIDTH / 2 - 75,20,150,25);
+
         saveButton = new JButton(new SaveAction());
         saveButton.setSize(100, 25);
-//        saveButton.setBounds(WIDTH / 2 - 50, HEIGHT - 100, 100,25);
 
         mainPage.add(addNewButton, BorderLayout.NORTH);
         mainPage.add(saveButton, BorderLayout.SOUTH);
@@ -156,21 +165,20 @@ public class MainPageUI implements ActionListener {
 
     // EFFECTS: present brief student info on the main page
     private void presentInfo() {
-        JPanel panel = new JPanel(new GridLayout(studentList.size() + 1, 8));
-        JScrollPane infoPane = new JScrollPane(panel);
-        infoPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        infoPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-//        infoPane.setMinimumSize(new Dimension(25,50));
 
+        panel  = new JPanel(new GridLayout(studentList.size() + 1, 8));
         setHeader(panel);
 
         for (Student s : studentList) {
             infoConvertToCol(s, panel);
         }
 
+        infoPane = new JScrollPane(panel);
         mainPage.add(infoPane, BorderLayout.CENTER);
 
-        infoPane.setVisible(true);
+        infoPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        infoPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        panel.setVisible(true);
         mainPage.setVisible(true);
         System.out.println("info presented"); // stub
     }
