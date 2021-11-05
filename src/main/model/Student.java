@@ -18,6 +18,7 @@ public class Student implements Writable {
     private String email = "";
     private String phoneNum = "";
     private EmergencyContactor emergencyContactor;
+    private String dateOfBirth = "";
 
     // REQUIRES: last name and first name can not be empty string
     // MODIFIES: this
@@ -75,6 +76,12 @@ public class Student implements Writable {
     }
 
     // MODIFIES: this
+    // EFFECTS: change student's date of birth
+    public void changeDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    // MODIFIES: this
     // EFFECTS: add a course to student's course list
     public void addCourse(Course c) {
         courses.add(c);
@@ -113,6 +120,11 @@ public class Student implements Writable {
     //EFFECTS: get student's phone number
     public String getPhoneNum() {
         return phoneNum;
+    }
+
+    //EFFECTS: get student's date of birth
+    public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
     // EFFECTS: get student's emergency contactor information
@@ -195,6 +207,7 @@ public class Student implements Writable {
         json.put("address", address.toJson());
         json.put("emergency contactor",emergencyContactor.toJson());
         json.put("course list",coursesToJson());
+        json.put("date of birth", dateOfBirth);
         return json;
     }
 

@@ -73,8 +73,13 @@ public class JsonReader {
 
         String studentNum = json.getString("student number");
         student.changeStudentNumber(studentNum);
+
         Address address = getAddress(json.getJSONObject("address"));
         student.changeStudentAddress(address);
+
+        String dateOfBirth = json.getString("date of birth");
+        student.changeDateOfBirth(dateOfBirth);
+
 
         EmergencyContactor ec = getEmergencyContactor(json.getJSONObject("emergency contactor"));
         student.changeEmergencyContactor(ec);

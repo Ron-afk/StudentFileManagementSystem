@@ -129,6 +129,12 @@ class StudentTest {
     }
 
     @Test
+    void changeDateOfBirthTest() {
+        student.changeDateOfBirth("1999-01-01");
+        assertEquals("1999-01-01",student.getDateOfBirth());
+    }
+
+    @Test
     public void getAllCoursesTest() {
         c1.changeStatus(0);
         c2.changeStatus(1);

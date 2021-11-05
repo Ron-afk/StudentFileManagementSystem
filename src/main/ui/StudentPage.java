@@ -23,7 +23,6 @@ public class StudentPage {
     }
 
 
-
     // MODIFIES: this
     // EFFECTS: initiate scanner
     private void init() {
@@ -55,6 +54,7 @@ public class StudentPage {
         System.out.println("First Name: " + student.getFirstName());
         System.out.println("Last Name: " + student.getLastName());
         System.out.println("PEN: " + student.getStudentNumber());
+        System.out.println("DOB" + student.getDateOfBirth());
         System.out.println("Address: ");
         printInfo.addressPrint(student.getAddress());
         System.out.println("Phone Number: " + student.getPhoneNum());
@@ -79,6 +79,7 @@ public class StudentPage {
         System.out.println("\tec -> edit emergency contactor info");
         System.out.println("\tci -> view detailed course info");
         System.out.println("\tac -> add course to this student");
+        System.out.println("\tdb -> edit date of birth");
         System.out.println("\tq -> quit to student list page");
     }
 
@@ -102,10 +103,19 @@ public class StudentPage {
             courseList();
         } else if (command.equals("ac")) {
             addCourse();
+        } else if (command.equals("db")) {
+            editDateOfBirth();
         } else {
             System.out.println("Invalid input...");
         }
     }
+
+    private void editDateOfBirth() {
+        System.out.println("Input date of birth in format YYYY-MM-DD: ");
+        String dateOfBirth = input.next();
+        student.changeDateOfBirth(dateOfBirth);
+    }
+
 
     // MODIFIES: this
     // EFFECTS: change student's name
