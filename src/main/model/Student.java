@@ -13,6 +13,7 @@ public class Student implements Writable {
     private String lastName = "";
     private String studentNumber = "";
     private Address address;
+    private String gender = "";
     private List<Course> courses;
     private String nationality = "";
     private String email = "";
@@ -82,6 +83,12 @@ public class Student implements Writable {
     }
 
     // MODIFIES: this
+    // EFFECTS: change gender "M" for male, "F" for female
+    public void changeGender(String gender) {
+        this.gender = gender;
+    }
+
+    // MODIFIES: this
     // EFFECTS: add a course to student's course list
     public void addCourse(Course c) {
         courses.add(c);
@@ -117,14 +124,19 @@ public class Student implements Writable {
         return email;
     }
 
-    //EFFECTS: get student's phone number
+    // EFFECTS: get student's phone number
     public String getPhoneNum() {
         return phoneNum;
     }
 
-    //EFFECTS: get student's date of birth
+    // EFFECTS: get student's date of birth
     public String getDateOfBirth() {
         return dateOfBirth;
+    }
+
+    // EFFECTS: get student's gender
+    public String getGender() {
+        return gender;
     }
 
     // EFFECTS: get student's emergency contactor information
@@ -208,6 +220,7 @@ public class Student implements Writable {
         json.put("emergency contactor",emergencyContactor.toJson());
         json.put("course list",coursesToJson());
         json.put("date of birth", dateOfBirth);
+        json.put("gender",gender);
         return json;
     }
 

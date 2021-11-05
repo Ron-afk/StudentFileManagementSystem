@@ -80,6 +80,7 @@ public class StudentPage {
         System.out.println("\tci -> view detailed course info");
         System.out.println("\tac -> add course to this student");
         System.out.println("\tdb -> edit date of birth");
+        System.out.println("\tgd -> change gender");
         System.out.println("\tq -> quit to student list page");
     }
 
@@ -105,9 +106,17 @@ public class StudentPage {
             addCourse();
         } else if (command.equals("db")) {
             editDateOfBirth();
+        } else if (command.equals("gd")) {
+            editGender();
         } else {
             System.out.println("Invalid input...");
         }
+    }
+
+    private void editGender() {
+        System.out.println("input gender: M or F");
+        String gender = input.next();
+        student.changeGender(gender);
     }
 
     private void editDateOfBirth() {

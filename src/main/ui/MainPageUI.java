@@ -166,7 +166,7 @@ public class MainPageUI implements ActionListener {
     // EFFECTS: present brief student info on the main page
     private void presentInfo() {
 
-        panel  = new JPanel(new GridLayout(studentList.size() + 1, 8));
+        panel  = new JPanel(new GridLayout(studentList.size() + 1, 9));
         setHeader(panel);
 
         for (Student s : studentList) {
@@ -190,12 +190,14 @@ public class MainPageUI implements ActionListener {
         JLabel dateOfBirth = new JLabel("|| DOB");
         JLabel phoneNum = new JLabel("|| Phone Number");
         JLabel email = new JLabel("|| Email");
+        JLabel gender = new JLabel("|| Gender");
         JLabel empty1 = new JLabel("||");
         JLabel empty2 = new JLabel("||");
 
 
         panel.add(lastName);
         panel.add(firstName);
+        panel.add(gender);
         panel.add(personalEducationNumber);
         panel.add(dateOfBirth);
         panel.add(phoneNum);
@@ -211,12 +213,14 @@ public class MainPageUI implements ActionListener {
         JLabel dateOfBirth = new JLabel("|| " + s.getDateOfBirth());
         JLabel phoneNum = new JLabel("|| " + s.getPhoneNum());
         JLabel email = new JLabel("|| " + s.getEmail());
+        JLabel gender = new JLabel("|| " + s.getGender());
 
         JButton viewButton = new JButton("View");
         JButton deleteButton = new JButton("Delete");
 
         panel.add(lastName);
         panel.add(firstName);
+        panel.add(gender);
         panel.add(personalEducationNumber);
         panel.add(dateOfBirth);
         panel.add(phoneNum);
