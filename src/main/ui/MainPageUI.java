@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,7 +43,8 @@ public class MainPageUI implements ActionListener {
         mainPage = new JFrame();
         mainPage.setSize(WIDTH, HEIGHT);
         mainPage.setTitle(title);
-        mainPage.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        mainPage.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        mainPage.addWindowListener(new WindowCloseOption());
         mainPage.setIconImage(initIcon.getImage());
         mainPage.setLayout(new BorderLayout());
 
@@ -52,8 +55,6 @@ public class MainPageUI implements ActionListener {
             infoPane.setVisible(false);
         }
         presentInfo();
-
-
     }
 
     // EFFECTS: add a menu bar to the main page
@@ -98,21 +99,23 @@ public class MainPageUI implements ActionListener {
             jsonWriter.open();
             jsonWriter.write(studentList);
             jsonWriter.close();
-            System.out.println("info saved");
+//            System.out.println("info saved");
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
+//            System.out.println("Unable to read from file: " + JSON_STORE);
+            JOptionPane.showMessageDialog(null, "Unable to read from file: " + JSON_STORE, "Error", 0);
         }
     }
 
     // MODIFIES: this
-    // EFFECTS: loads
-    // student list from file
+    // EFFECTS: loads student list from file
     private void loadInfo() {
         try {
             studentList = jsonReader.read();
-            System.out.println("info loaded");
+//            System.out.println("info loaded");
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
+//            System.out.println("Unable to read from file: " + JSON_STORE);
+            JOptionPane.showMessageDialog(null, "Unable to read from file: " + JSON_STORE, "Error", 0);
+
         }
     }
 
@@ -148,7 +151,12 @@ public class MainPageUI implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            new AddNewStudentUI(studentList);
+            new EditableStudentInfoUI(studentList, new Student("", ""));
+            if (panel != null) {
+                panel.setVisible(false);
+                infoPane.setVisible(false);
+            }
+            presentInfo();
         }
     }
 
@@ -159,6 +167,10 @@ public class MainPageUI implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            if (panel != null) {
+                panel.setVisible(false);
+                infoPane.setVisible(false);
+            }
             presentInfo();
         }
     }
@@ -166,7 +178,8 @@ public class MainPageUI implements ActionListener {
     // EFFECTS: present brief student info on the main page
     private void presentInfo() {
 
-        panel  = new JPanel(new GridLayout(studentList.size() + 1, 9));
+        panel = new JPanel(new GridLayout(studentList.size() + 1, 9));
+
         setHeader(panel);
 
         for (Student s : studentList) {
@@ -174,15 +187,17 @@ public class MainPageUI implements ActionListener {
         }
 
         infoPane = new JScrollPane(panel);
+
         mainPage.add(infoPane, BorderLayout.CENTER);
 
         infoPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         infoPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         panel.setVisible(true);
         mainPage.setVisible(true);
-        System.out.println("info presented"); // stub
+//        System.out.println("info presented");
     }
 
+    //EFFECTS: set header for information to be presented
     private void setHeader(JPanel panel) {
         JLabel lastName = new JLabel("Last Name");
         JLabel firstName = new JLabel("|| First Name");
@@ -206,6 +221,7 @@ public class MainPageUI implements ActionListener {
         panel.add(empty2);
     }
 
+    // EFFECTS: convert detailed info into rows as label
     private void infoConvertToCol(Student s, JPanel panel) {
         JLabel lastName = new JLabel(s.getLastName());
         JLabel firstName = new JLabel("|| " + s.getFirstName());
@@ -215,8 +231,8 @@ public class MainPageUI implements ActionListener {
         JLabel email = new JLabel("|| " + s.getEmail());
         JLabel gender = new JLabel("|| " + s.getGender());
 
-        JButton viewButton = new JButton("View");
-        JButton deleteButton = new JButton("Delete");
+        JButton viewButton = new JButton(new View(s));
+        JButton deleteButton = new JButton(new Delete(s));
 
         panel.add(lastName);
         panel.add(firstName);
@@ -228,5 +244,63 @@ public class MainPageUI implements ActionListener {
 
         panel.add(viewButton);
         panel.add(deleteButton);
+    }
+
+    private class View extends AbstractAction {
+        Student student;
+
+        View(Student student) {
+            super("view");
+            this.student = student;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            new StudentInfoUI(studentList, student);
+        }
+    }
+
+    private class Delete extends AbstractAction {
+        Student student;
+
+        Delete(Student student) {
+            super("delete");
+            this.student = student;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            studentList.remove(student);
+            panel.setVisible(false);
+            infoPane.setVisible(false);
+            int i = JOptionPane.showConfirmDialog(null,
+                    "Save your change??",
+                    "Save notice",
+                    JOptionPane.YES_NO_OPTION);
+            if (i == 0) {
+                saveStudents();
+            }
+            presentInfo();
+        }
+    }
+
+    private class WindowCloseOption extends WindowAdapter {
+        @Override
+        public void windowClosing(WindowEvent e) {
+            String[] options = {"save", "save and close", "close without save", "cancel"};
+            int i = JOptionPane.showOptionDialog(null,
+                    "Save and close",
+                    "Close?",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+            if (i == 0) {
+                saveStudents();
+            } else if (i == 1) {
+                saveStudents();
+                System.exit(0);
+            } else if (i == 2) {
+                System.exit(0);
+            }
+        }
     }
 }
