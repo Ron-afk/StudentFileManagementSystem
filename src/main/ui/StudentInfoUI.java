@@ -1,16 +1,21 @@
 package ui;
 
+import model.Course;
 import model.Student;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 public class StudentInfoUI extends JFrame {
     private Student student;
     private JFrame frame = new JFrame();
     private List<Student> studentList;
+    private JScrollPane scrollPane;
+    private JPanel detailedStudentInfo;
 
 
     public StudentInfoUI(List<Student> studentList, Student student) {
@@ -24,12 +29,21 @@ public class StudentInfoUI extends JFrame {
         frame.setLayout(new BorderLayout());
 
         addButton();
-        JPanel detailedStudentInfo = new JPanel();
+        presentInfo();
+    }
+
+    private void presentInfo() {
+        detailedStudentInfo = new JPanel();
         new StudentInfoPanelUI(detailedStudentInfo, student,false);
 
-        frame.add(detailedStudentInfo, BorderLayout.CENTER);
+        scrollPane = new JScrollPane(detailedStudentInfo);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVisible(true);
+
+        frame.add(scrollPane, BorderLayout.CENTER);
         detailedStudentInfo.setVisible(true);
         frame.setVisible(true);
+
     }
 
     private void addButton() {
@@ -38,13 +52,33 @@ public class StudentInfoUI extends JFrame {
         JButton addCourseButton = new JButton(new AddCourseAction());
         JButton timeTableButton = new JButton("time table");
         JButton currentAverageButton = new JButton(new AverageAction());
+        JButton refreshButton = new JButton(new RefreshAction());
+        JPanel northPanel = new JPanel(new BorderLayout());
+
+        northPanel.add(editButton,BorderLayout.EAST);
+        northPanel.add(refreshButton,BorderLayout.WEST);
 
         southPanel.add(timeTableButton,BorderLayout.WEST);
         southPanel.add(currentAverageButton,BorderLayout.CENTER);
         southPanel.add(addCourseButton,BorderLayout.EAST);
 
-        frame.add(editButton, BorderLayout.NORTH);
+        frame.add(northPanel, BorderLayout.NORTH);
         frame.add(southPanel, BorderLayout.SOUTH);
+    }
+
+    private class RefreshAction extends AbstractAction {
+
+        RefreshAction() {
+            super("Refresh");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            frame.setVisible(false);
+            detailedStudentInfo.setVisible(false);
+            scrollPane.setVisible(false);
+            presentInfo();
+        }
     }
 
     private class EditAction extends AbstractAction {
@@ -69,9 +103,15 @@ public class StudentInfoUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            // stub
+            JFrame courseFrame = new JFrame();
+            new CourseInfoPanelUI(courseFrame,student.getAllCourses(),new Course(""),true);
+
         }
+
+
     }
+
+
 
     private class AverageAction extends AbstractAction {
         AverageAction() {

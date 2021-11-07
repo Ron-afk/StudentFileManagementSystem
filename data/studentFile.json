@@ -1,5 +1,38 @@
 [{
-    "course list": [],
+    "course list": [
+        {
+            "course name": "chem 12",
+            "teacher": "fan",
+            "finish time": "2021-12",
+            "grade": 0,
+            "time block": 1,
+            "status": 1
+        },
+        {
+            "course name": "phys12",
+            "teacher": "fan",
+            "finish time": "2021-12",
+            "grade": 0,
+            "time block": 1,
+            "status": 1
+        },
+        {
+            "course name": "math12",
+            "teacher": "li",
+            "finish time": "",
+            "grade": 0,
+            "time block": 0,
+            "status": 0
+        },
+        {
+            "course name": "social 12",
+            "teacher": "dominic",
+            "finish time": "2021-12",
+            "grade": 0,
+            "time block": 2,
+            "status": 1
+        }
+    ],
     "address": {
         "city": "city",
         "provence": "pro",
@@ -14,7 +47,7 @@
         "address": {
             "city": "ec city",
             "provence": "ec pro",
-            "postal code": "ec pos",
+            "postal code": "ec pro",
             "street address": "ec street",
             "unit number": "ec unit"
         },

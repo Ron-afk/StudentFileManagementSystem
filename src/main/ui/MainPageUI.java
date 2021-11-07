@@ -194,7 +194,6 @@ public class MainPageUI implements ActionListener {
         infoPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         panel.setVisible(true);
         mainPage.setVisible(true);
-//        System.out.println("info presented");
     }
 
     //EFFECTS: set header for information to be presented

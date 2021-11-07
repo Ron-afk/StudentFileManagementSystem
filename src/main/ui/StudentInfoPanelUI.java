@@ -7,6 +7,7 @@ import model.Student;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.List;
 
 public class StudentInfoPanelUI {
@@ -14,7 +15,7 @@ public class StudentInfoPanelUI {
     private final int tagHeight = 25;
 
     private JPanel panel;
-    private JScrollPane scrollPane;
+
     private Student student;
     private String studentFirstName;
     private String studentLastName;
@@ -72,14 +73,15 @@ public class StudentInfoPanelUI {
         box.add(studentAddressConverter(student.getAddress()));
         box.add(emergencyContactorConverter(student.getEmergencyContactor()));
         box.add(emergencyContactorAddressConverter(student.getEmergencyContactor().getAddress()));
-        box.add(new JLabel("Course History"));
-        box.add(courseConverter(student.getAllCourses()));
+        if (!editable) {
+            box.add(new JLabel("Course History"));
+            box.add(courseConverter(student.getAllCourses()));
+        }
         box.add(Box.createHorizontalStrut(1200));
         box.add(Box.createVerticalStrut(850));
         panel.add(box);
 
-        scrollPane = new JScrollPane(panel);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        panel.setVisible(true);
     }
 
     private Box studentConverter(Student student) {
@@ -398,7 +400,16 @@ public class StudentInfoPanelUI {
         Box boxV = Box.createVerticalBox();
         for (Course c : courses) {
             boxV.add(Box.createRigidArea(new Dimension(0, 5)));
-            boxV.add(new JLabel(c.getCourseName()));
+            JButton editCourseButton = new JButton(new EditCourseAction(c));
+
+
+            Box boxH = Box.createHorizontalBox();
+
+            boxH.add(new JLabel(c.getCourseName()));
+            boxH.add(Box.createRigidArea(new Dimension(50,0)));
+            boxH.add(editCourseButton);
+            boxV.add(boxH);
+
             boxV.add(Box.createRigidArea(new Dimension(0, 5)));
             boxV.add(infoBoxConverter("Teacher", c.getTeacher()));
             boxV.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -411,6 +422,22 @@ public class StudentInfoPanelUI {
             boxV.add(infoBoxConverter("Finish Time", c.getFinishTime()));
         }
         return boxV;
+    }
+
+    private class EditCourseAction extends AbstractAction {
+
+        private Course course;
+
+        EditCourseAction(Course c) {
+            super("edit course");
+            this.course = c;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JFrame frame = new JFrame();
+            new CourseInfoPanelUI(frame, student.getAllCourses(), course, true);
+        }
     }
 
     private Box infoBoxConverter(String fieldName, String content) {

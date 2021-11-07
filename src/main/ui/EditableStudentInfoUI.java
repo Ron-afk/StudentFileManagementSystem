@@ -1,5 +1,6 @@
 package ui;
 
+import model.Course;
 import model.Student;
 
 import javax.swing.*;
@@ -41,7 +42,7 @@ public class EditableStudentInfoUI extends JFrame {
         frame.setVisible(true);
     }
 
-    private class WindowCloseOption extends WindowAdapter {
+    public class WindowCloseOption extends WindowAdapter {
         @Override
         public void windowClosing(WindowEvent e) {
             String[] options = {"save", "save and close", "close"};
@@ -70,12 +71,8 @@ public class EditableStudentInfoUI extends JFrame {
 
     // EFFECTS: add save button to the page
     private void addButton() {
-        JPanel southPanel = new JPanel();
         JButton saveButton = new JButton(new SaveAction());
-        JButton addCourseButton = new JButton(new AddCourseAction());
-        southPanel.add(saveButton,BorderLayout.WEST);
-        southPanel.add(addCourseButton,BorderLayout.EAST);
-        frame.add(southPanel, BorderLayout.SOUTH);
+        frame.add(saveButton, BorderLayout.SOUTH);
     }
 
     /**
@@ -114,7 +111,10 @@ public class EditableStudentInfoUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            // stub
+            JFrame courseFrame = new JFrame();
+
+            new CourseInfoPanelUI(courseFrame,student.getAllCourses(),new Course(""),true);
+
         }
     }
 
