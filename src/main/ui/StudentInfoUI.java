@@ -37,8 +37,10 @@ public class StudentInfoUI extends JFrame {
         JButton editButton = new JButton(new EditAction(student));
         JButton addCourseButton = new JButton(new AddCourseAction());
         JButton timeTableButton = new JButton("time table");
+        JButton currentAverageButton = new JButton(new AverageAction());
 
         southPanel.add(timeTableButton,BorderLayout.WEST);
+        southPanel.add(currentAverageButton,BorderLayout.CENTER);
         southPanel.add(addCourseButton,BorderLayout.EAST);
 
         frame.add(editButton, BorderLayout.NORTH);
@@ -63,6 +65,17 @@ public class StudentInfoUI extends JFrame {
     private class AddCourseAction extends AbstractAction {
         AddCourseAction() {
             super("add course");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // stub
+        }
+    }
+
+    private class AverageAction extends AbstractAction {
+        AverageAction() {
+            super("get current average");
         }
 
         @Override
