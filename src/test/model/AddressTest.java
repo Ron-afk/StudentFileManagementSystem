@@ -3,8 +3,6 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.print.attribute.HashPrintServiceAttributeSet;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AddressTest {
@@ -31,9 +29,9 @@ public class AddressTest {
 
     @Test
     public void changeProvenceTest() {
-        assertEquals("",address.getProvence());
-        address.changeProvence("BC");
-        assertEquals("BC", address.getProvence());
+        assertEquals("",address.getProvince());
+        address.changeProvince("BC");
+        assertEquals("BC", address.getProvince());
     }
 
     @Test

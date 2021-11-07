@@ -4,6 +4,7 @@ import model.Student;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.security.auth.RefreshFailedException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,6 +16,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/** This class represent the main page ui, it can save and load to/from previous data file
+ *  The ui will show brief student info and have options to add new student, view detailed student
+ *   info or delete a student from the current student list
+ */
 public class MainPageUI implements ActionListener {
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 900;
@@ -152,11 +157,6 @@ public class MainPageUI implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             new EditableStudentInfoUI(studentList, new Student("", ""));
-            if (panel != null) {
-                panel.setVisible(false);
-                infoPane.setVisible(false);
-            }
-            presentInfo();
         }
     }
 
@@ -274,8 +274,8 @@ public class MainPageUI implements ActionListener {
             panel.setVisible(false);
             infoPane.setVisible(false);
             int i = JOptionPane.showConfirmDialog(null,
-                    "Save your change??",
-                    "Save notice",
+                    "Sure to delete?",
+                    "Delete",
                     JOptionPane.YES_NO_OPTION);
             if (i == 0) {
                 saveStudents();

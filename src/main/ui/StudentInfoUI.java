@@ -11,7 +11,7 @@ public class StudentInfoUI extends JFrame {
     private Student student;
     private JFrame frame = new JFrame();
     private List<Student> studentList;
-    private JScrollPane scrollPane;
+
 
     public StudentInfoUI(List<Student> studentList, Student student) {
         this.student = student;
@@ -24,30 +24,25 @@ public class StudentInfoUI extends JFrame {
         frame.setLayout(new BorderLayout());
 
         addButton();
-        addScrollPane();
+        JPanel detailedStudentInfo = new JPanel();
+        new StudentInfoPanelUI(detailedStudentInfo, student,false);
 
+        frame.add(detailedStudentInfo, BorderLayout.CENTER);
+        detailedStudentInfo.setVisible(true);
         frame.setVisible(true);
     }
 
     private void addButton() {
+        JPanel southPanel = new JPanel();
         JButton editButton = new JButton(new EditAction(student));
+        JButton addCourseButton = new JButton(new AddCourseAction());
         JButton timeTableButton = new JButton("time table");
 
-        frame.add(editButton,BorderLayout.NORTH);
-        frame.add(timeTableButton,BorderLayout.SOUTH);
-    }
+        southPanel.add(timeTableButton,BorderLayout.WEST);
+        southPanel.add(addCourseButton,BorderLayout.EAST);
 
-    private void addScrollPane() {
-        scrollPane = new JScrollPane();
-
-        presentInfo();
-
-        scrollPane.setVisible(true);
-        frame.add(scrollPane, BorderLayout.CENTER);
-    }
-
-    private void presentInfo() {
-//
+        frame.add(editButton, BorderLayout.NORTH);
+        frame.add(southPanel, BorderLayout.SOUTH);
     }
 
     private class EditAction extends AbstractAction {
@@ -60,8 +55,19 @@ public class StudentInfoUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            new EditableStudentInfoUI(studentList,student);
+            new EditableStudentInfoUI(studentList, student);
             frame.dispose();
+        }
+    }
+
+    private class AddCourseAction extends AbstractAction {
+        AddCourseAction() {
+            super("add course");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // stub
         }
     }
 }

@@ -181,7 +181,7 @@ public class StudentPage {
         address.changeCity(city);
         System.out.println("Input provence: ");
         String provence = input.next();
-        address.changeProvence(provence);
+        address.changeProvince(provence);
         System.out.println("Input postal code");
         String postalCode = input.next();
         address.changePostalCode(postalCode);

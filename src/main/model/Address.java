@@ -7,7 +7,7 @@ import persistence.Writable;
 public class Address implements Writable {
     private String postalCode = "";
     private String city = "";
-    private String provence = "";
+    private String province = "";
     private String unitNum = "";
     private String streetAddress = "";
 
@@ -38,13 +38,13 @@ public class Address implements Writable {
 
     // MODIFIES: this
     // EFFECTS: change provence
-    public void changeProvence(String provence) {
-        this.provence = provence;
+    public void changeProvince(String provence) {
+        this.province = provence;
     }
 
     // EFFECTS: get provence
-    public String getProvence() {
-        return provence;
+    public String getProvince() {
+        return province;
     }
 
     // MODIFIES: this
@@ -75,7 +75,7 @@ public class Address implements Writable {
         json.put("unit number",unitNum);
         json.put("street address", streetAddress);
         json.put("city", city);
-        json.put("provence",provence);
+        json.put("provence", province);
         json.put("postal code",postalCode);
         return json;
     }

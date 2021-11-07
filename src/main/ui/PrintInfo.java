@@ -11,7 +11,7 @@ public class PrintInfo {
     // EFFECTS: print out address
     public void addressPrint(Address address) {
         System.out.println(address.getUnitNum() + " " + address.getStreetAddress());
-        System.out.println(address.getCity() + "  " + address.getProvence());
+        System.out.println(address.getCity() + "  " + address.getProvince());
         System.out.println(address.getPostalCode());
     }
 

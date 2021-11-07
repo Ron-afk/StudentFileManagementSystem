@@ -7,7 +7,6 @@ import model.Student;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -106,7 +105,7 @@ public class JsonReader {
         address.changeCity(city);
 
         String provence = json.getString("provence");
-        address.changeProvence(provence);
+        address.changeProvince(provence);
 
         String postalCode = json.getString("postal code");
         address.changePostalCode(postalCode);
