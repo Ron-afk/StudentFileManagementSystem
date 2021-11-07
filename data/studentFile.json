@@ -1,30 +1,30 @@
 [{
     "course list": [],
     "address": {
-        "city": "",
-        "provence": "",
-        "postal code": "",
-        "street address": "",
-        "unit number": ""
+        "city": "city",
+        "provence": "pro",
+        "postal code": "pos",
+        "street address": "street",
+        "unit number": "unit"
     },
-    "nationality": "",
-    "gender": "",
+    "nationality": "nation",
+    "gender": "gender",
     "First Name": "rang",
     "emergency contactor": {
         "address": {
-            "city": "",
-            "provence": "",
-            "postal code": "",
-            "street address": "",
-            "unit number": ""
+            "city": "ec city",
+            "provence": "ec pro",
+            "postal code": "ec pos",
+            "street address": "ec street",
+            "unit number": "ec unit"
         },
-        "name": "",
-        "phone number": "",
-        "relation": ""
+        "name": "name",
+        "phone number": "ec phone",
+        "relation": "relation    "
     },
     "Last Name": "xiao",
-    "phone number": "",
-    "email": "",
-    "student number": "",
-    "date of birth": ""
+    "phone number": "phone",
+    "email": "email",
+    "student number": "pen",
+    "date of birth": "dob"
 }]

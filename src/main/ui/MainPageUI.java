@@ -270,16 +270,17 @@ public class MainPageUI implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            studentList.remove(student);
-            panel.setVisible(false);
-            infoPane.setVisible(false);
+
             int i = JOptionPane.showConfirmDialog(null,
                     "Sure to delete?",
                     "Delete",
                     JOptionPane.YES_NO_OPTION);
             if (i == 0) {
-                saveStudents();
+                studentList.remove(student);
+//                saveStudents();
             }
+            panel.setVisible(false);
+            infoPane.setVisible(false);
             presentInfo();
         }
     }
