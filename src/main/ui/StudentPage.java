@@ -108,9 +108,10 @@ public class StudentPage {
             editDateOfBirth();
         } else if (command.equals("gd")) {
             editGender();
-        } else {
-            System.out.println("Invalid input...");
         }
+//        else {
+//            System.out.println("Invalid input...");
+//        }
     }
 
     private void editGender() {

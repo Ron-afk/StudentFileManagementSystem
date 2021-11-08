@@ -1,6 +1,5 @@
 package ui;
 
-import com.sun.org.apache.xpath.internal.axes.WalkingIteratorSorted;
 import model.Course;
 
 import javax.swing.*;
