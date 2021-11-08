@@ -477,7 +477,14 @@ public class StudentInfoPanelUI {
         // EFFECTS: remove selected course from course list
         @Override
         public void actionPerformed(ActionEvent e) {
-            student.getAllCourses().remove(course);
+
+            int i = JOptionPane.showConfirmDialog(null,
+                    "Sure to delete?",
+                    "Delete",
+                    JOptionPane.YES_NO_OPTION);
+            if (i == 0) {
+                student.getAllCourses().remove(course);
+            }
         }
     }
 
