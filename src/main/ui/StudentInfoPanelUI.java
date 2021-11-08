@@ -435,15 +435,16 @@ public class StudentInfoPanelUI {
     private Box courseConverter(List<Course> courses) {
         Box boxV = Box.createVerticalBox();
         for (Course c : courses) {
-            boxV.add(Box.createRigidArea(new Dimension(0, 5)));
+            boxV.add(Box.createRigidArea(new Dimension(0, 25)));
             JButton editCourseButton = new JButton(new EditCourseAction(c));
-
+            JButton deleteCourseButton = new JButton(new DeleteCourseAction(c));
 
             Box boxH = Box.createHorizontalBox();
 
             boxH.add(new JLabel(c.getCourseName()));
             boxH.add(Box.createRigidArea(new Dimension(50,0)));
             boxH.add(editCourseButton);
+            boxH.add(deleteCourseButton);
             boxV.add(boxH);
 
             boxV.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -456,8 +457,28 @@ public class StudentInfoPanelUI {
             boxV.add(infoBoxConverter("Status", courseStatusConvertor(c.getStatus())));
             boxV.add(Box.createRigidArea(new Dimension(0, 5)));
             boxV.add(infoBoxConverter("Finish Time", c.getFinishTime()));
+
         }
         return boxV;
+    }
+
+    /** This class provides an action listener for delete course button
+     *  Delete selected course from course list
+     */
+    private class DeleteCourseAction extends AbstractAction {
+
+        Course course;
+
+        DeleteCourseAction(Course course) {
+            super("delete");
+            this.course = course;
+        }
+
+        // EFFECTS: remove selected course from course list
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            student.getAllCourses().remove(course);
+        }
     }
 
     /** This class provides action listener to edit course button
