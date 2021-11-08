@@ -42,7 +42,13 @@ public class EditableStudentInfoUI extends JFrame {
         frame.setVisible(true);
     }
 
+    /** This class provide a window listener for window close
+     *
+     */
     public class WindowCloseOption extends WindowAdapter {
+
+        // EFFECTS: an option panel will show up to choose behavior
+        //          between save, save and close, and close without save
         @Override
         public void windowClosing(WindowEvent e) {
             String[] options = {"save", "save and close", "close"};
@@ -104,18 +110,18 @@ public class EditableStudentInfoUI extends JFrame {
         }
     }
 
-    private class AddCourseAction extends AbstractAction {
-        AddCourseAction() {
-            super("add course");
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            JFrame courseFrame = new JFrame();
-
-            new CourseInfoPanelUI(courseFrame,student.getAllCourses(),new Course(""),true);
-
-        }
-    }
+//    private class AddCourseAction extends AbstractAction {
+//        AddCourseAction() {
+//            super("add course");
+//        }
+//
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            JFrame courseFrame = new JFrame();
+//
+//            new CourseInfoPanelUI(courseFrame,student.getAllCourses(),new Course(""),true);
+//
+//        }
+//    }
 
 }

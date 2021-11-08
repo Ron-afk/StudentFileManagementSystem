@@ -136,35 +136,48 @@ public class MainPageUI implements ActionListener {
         mainPage.add(saveButton, BorderLayout.SOUTH);
     }
 
+    /** This class provides action listener for save button
+     *
+     */
     private class SaveAction extends AbstractAction {
 
         SaveAction() {
             super("Save");
         }
 
+        // MODIFIES: this
+        // EFFECTS: save current student information to the JSON file
         @Override
         public void actionPerformed(ActionEvent e) {
             saveStudents();
         }
     }
 
+    /** This class provide action listener for add new student button
+     *  Add a new student to current student list
+     */
     private class AddNewStudentAction extends AbstractAction {
 
         AddNewStudentAction() {
             super("Add New Student");
         }
 
+        // EFFECTS: create a new page for adding a new student
         @Override
         public void actionPerformed(ActionEvent e) {
             new EditableStudentInfoUI(studentList, new Student("", ""));
         }
     }
 
+    /** This class provides action listener for refresh button
+     *  Refresh the current page
+     */
     private class RefreshAction extends AbstractAction {
         RefreshAction() {
             super("refresh");
         }
 
+        // EFFECTS: refresh the current page
         @Override
         public void actionPerformed(ActionEvent e) {
             if (panel != null) {
@@ -245,6 +258,9 @@ public class MainPageUI implements ActionListener {
         panel.add(deleteButton);
     }
 
+    /** This class provides action listener for the view button
+     *  Create a new page with detailed student information
+     */
     private class View extends AbstractAction {
         Student student;
 
@@ -253,12 +269,16 @@ public class MainPageUI implements ActionListener {
             this.student = student;
         }
 
+        // EFFECTS: create a new page with detailed student information
         @Override
         public void actionPerformed(ActionEvent e) {
             new StudentInfoUI(studentList, student);
         }
     }
 
+    /** This class provides action listener for delete button
+     *  Delete a student from current student list
+     */
     private class Delete extends AbstractAction {
         Student student;
 
@@ -267,6 +287,7 @@ public class MainPageUI implements ActionListener {
             this.student = student;
         }
 
+        // EFFECTS: delete a student from current student list with an option panel for confirmation
         @Override
         public void actionPerformed(ActionEvent e) {
 
@@ -284,7 +305,13 @@ public class MainPageUI implements ActionListener {
         }
     }
 
+    /** This class provide a window close behavior with choice of save, save and close, close without save, and cnacel
+     *
+     */
     private class WindowCloseOption extends WindowAdapter {
+
+        // EFFECTS: provide an option panel with choice of save, save and close, close without save, or cancel
+        //          when closing the window
         @Override
         public void windowClosing(WindowEvent e) {
             String[] options = {"save", "save and close", "close without save", "cancel"};

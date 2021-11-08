@@ -10,6 +10,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 
+/** This class create a new page to represent the detailed student information with their course history
+ *
+ */
 public class StudentInfoUI extends JFrame {
     private Student student;
     private JFrame frame = new JFrame();
@@ -17,7 +20,7 @@ public class StudentInfoUI extends JFrame {
     private JScrollPane scrollPane;
     private JPanel detailedStudentInfo;
 
-
+    // EFFECTS: create a new page to show the detailed student info
     public StudentInfoUI(List<Student> studentList, Student student) {
         this.student = student;
         this.studentList = studentList;
@@ -32,6 +35,7 @@ public class StudentInfoUI extends JFrame {
         presentInfo();
     }
 
+    // EFFECTS: present detailed student info on the frame
     private void presentInfo() {
         detailedStudentInfo = new JPanel();
         new StudentInfoPanelUI(detailedStudentInfo, student,false);
@@ -46,6 +50,7 @@ public class StudentInfoUI extends JFrame {
 
     }
 
+    // EFFECTS: add edit button, add course button, time table button, and refresh button to the frame
     private void addButton() {
         JPanel southPanel = new JPanel();
         JButton editButton = new JButton(new EditAction(student));
@@ -66,6 +71,9 @@ public class StudentInfoUI extends JFrame {
         frame.add(southPanel, BorderLayout.SOUTH);
     }
 
+    /** This class provide an action listener for tiem table button
+     *  Create a new page to show the time table for current term
+     */
     private class TimeTableAction extends AbstractAction {
         List<Course> courseList;
 
@@ -74,18 +82,23 @@ public class StudentInfoUI extends JFrame {
             this.courseList = courseList;
         }
 
+        // EFFECTS: create a new page to show the time table
         @Override
         public void actionPerformed(ActionEvent e) {
             new TimeTableUI(courseList);
         }
     }
 
+    /** This class provide an action listener for refresh button
+     *  Refresh current page
+     */
     private class RefreshAction extends AbstractAction {
 
         RefreshAction() {
             super("Refresh");
         }
 
+        // EFFECTS: refresh current page
         @Override
         public void actionPerformed(ActionEvent e) {
             frame.setVisible(false);
@@ -95,6 +108,9 @@ public class StudentInfoUI extends JFrame {
         }
     }
 
+    /** This class provide an action listener for edit button
+     *  Create a new page to edit selected course
+     */
     private class EditAction extends AbstractAction {
         Student student;
 
@@ -103,6 +119,7 @@ public class StudentInfoUI extends JFrame {
             this.student = student;
         }
 
+        // EFFECTS: create a new page to edit selected course
         @Override
         public void actionPerformed(ActionEvent e) {
             new EditableStudentInfoUI(studentList, student);
@@ -110,28 +127,32 @@ public class StudentInfoUI extends JFrame {
         }
     }
 
+    /** This class provides an action listener for add course button
+     *  Create a new page to add new course to student
+     */
     private class AddCourseAction extends AbstractAction {
         AddCourseAction() {
             super("add course");
         }
 
+        // EFFECTS: create a new page to add a new course to student
         @Override
         public void actionPerformed(ActionEvent e) {
             JFrame courseFrame = new JFrame();
             new CourseInfoPanelUI(courseFrame,student.getAllCourses(),new Course(""),true);
 
         }
-
-
     }
 
-
-
+    /** This class provides an action listener for average grade button
+     *  Create a new option panel to show the current average grade
+     */
     private class AverageAction extends AbstractAction {
         AverageAction() {
             super("get current average");
         }
 
+        // EFFECTS: create a new option panel to show current average grade
         @Override
         public void actionPerformed(ActionEvent e) {
             double avg = student.gradeAvg(student.getFinishedCourses());

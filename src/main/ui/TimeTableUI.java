@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/** This class create a new page to show the time table for current term for the student
+ *
+ */
 public class TimeTableUI {
     private static final int WIDTH = 500;
     private static final int HEIGHT = 500;
@@ -17,6 +20,7 @@ public class TimeTableUI {
     private JFrame frame;
     private JPanel panel;
 
+    // EFFECTS: construct a new page to show the time table for current term
     public TimeTableUI(List<Course> courseList) {
         this.courseList = courseList;
         frame = new JFrame();
@@ -29,6 +33,7 @@ public class TimeTableUI {
         frame.setVisible(true);
     }
 
+    // EFFECTS: present the time table on the frame
     private void presentInfo() {
         panel = new JPanel(new GridLayout(courseList.size() + 1,3));
 
@@ -50,6 +55,7 @@ public class TimeTableUI {
         frame.add(panel);
     }
 
+    // EFFECTS: convert course info to table format
     private void tableConverter() {
 
         for (Course c : courseList) {

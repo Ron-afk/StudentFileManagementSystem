@@ -10,6 +10,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.List;
 
+/** This class build a detail student information page with choice of text area is editable or not
+ *
+ */
 public class StudentInfoPanelUI {
     private final int tagWidth = 200;
     private final int tagHeight = 25;
@@ -61,6 +64,8 @@ public class StudentInfoPanelUI {
     private JTextArea ecPostalCodeInput;
     private boolean editable = true;
 
+    // EFFECTS: construct a new panel with detailed student information,
+    //          if editable is true, user can edit student info
     public StudentInfoPanelUI(JPanel panel, Student student, boolean editable) {
 
         this.student = student;
@@ -84,6 +89,7 @@ public class StudentInfoPanelUI {
         panel.setVisible(true);
     }
 
+    // EFFECTS: convert student information to a box, return the box
     private Box studentConverter(Student student) {
         Box boxV = Box.createVerticalBox();
         boxV.add(studentLastNameConverter());
@@ -106,6 +112,7 @@ public class StudentInfoPanelUI {
         return boxV;
     }
 
+    // EFFECTS: convert student first name to text area and create a label, wrap them within a box, return the box
     private Box studentFirstNameConverter() {
         JLabel tag = new JLabel("First Name");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -117,6 +124,7 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert student gender to a text area and create a label, wrap them within a box, return the box
     private Box studentGenderConverter() {
         JLabel tag = new JLabel("Gender");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -128,6 +136,7 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert student DOB to a text area and create a label, wrap them within a box, return the box
     private Box studentDateOfBirthConvertor() {
         JLabel tag = new JLabel("DOB");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -140,6 +149,7 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert student number to a text area and create a label, wrap them within a box, return the box
     private Box studentNumberConvertor() {
         JLabel tag = new JLabel("PEN");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -152,6 +162,7 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS:  convert student phone number to a text area and create a label, wrap them within a box, return the box
     private Box studentPhoneNumConverter() {
         JLabel tag = new JLabel("Phone Number");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -164,6 +175,7 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert student email to a text area and create a label, wrap them within a box, return the box
     private Box studentEmailConvertor() {
         JLabel tag = new JLabel("Email");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -176,6 +188,7 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert student nationality to a text area and create a label, wrap them within a box, return the box
     private Box nationalityConvertor() {
         JLabel tag = new JLabel("Nationality");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -188,6 +201,7 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert student last name to a text area and create a label, wrap them within a box, return the box
     private Box studentLastNameConverter() {
         JLabel tag = new JLabel("Last Name");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -200,6 +214,8 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert emergency contactor basic information to text areas and create labels, wrap them within a box,
+    //          return the box
     private Box emergencyContactorConverter(EmergencyContactor ec) {
         Box box = Box.createVerticalBox();
         box.add(new JLabel("Emergency Contactor"));
@@ -213,6 +229,7 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert emergency contactor name to text area and create label, wrap them within a box, return the box
     private Box emergencyContactorNameConvertor(EmergencyContactor ec) {
         JLabel tag = new JLabel("Name");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -225,6 +242,8 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert emergency contactor phone number to text area and create label, wrap them within a box,
+    //          return the box
     private Box emergencyContactorPhoneNumConverter(EmergencyContactor ec) {
         JLabel tag = new JLabel("Phone Number");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -237,6 +256,8 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert emergency contactor relation to text area, and create label, wrap them within a box,
+    //          return the box
     private Box emergencyContactorRelationConverter(EmergencyContactor ec) {
         JLabel tag = new JLabel("Relation with student");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -250,6 +271,7 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS:  convert student address to text areas and create label, wrap them within a box, return the box
     private Box studentAddressConverter(Address ad) {
         Box box = Box.createVerticalBox();
 
@@ -269,6 +291,7 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert student unit number to text area and create label, wrap them within a box, return the box
     private Box studentUnitConverter(Address ad) {
         JLabel tag = new JLabel("Unit Number");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -281,6 +304,7 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert student street address to text area and create label, wrap them within a box, return the box
     private Box studentStreetConverter(Address ad) {
         JLabel tag = new JLabel("Street Address");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -293,6 +317,7 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert student city to text area and create label, wrap them within a box, return the box
     private Box studentCityConverter(Address ad) {
         JLabel tag = new JLabel("City");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -305,6 +330,7 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert student postal code to text area and create label, wrap them within a box, return the box
     private Box studentPostalCodeConverter(Address ad) {
         JLabel tag = new JLabel("Postal Code");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -317,6 +343,7 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert student province to text area and create label, wrap them within a box, return the box
     private Box studentProvinceConverter(Address ad) {
         JLabel tag = new JLabel("Province");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -329,6 +356,8 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert emergency contactor address to text area and create labels, wrap them within a box,
+    //          return the box
     private Box emergencyContactorAddressConverter(Address ad) {
         Box box = Box.createVerticalBox();
 
@@ -348,6 +377,8 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert emergency contactor unit number to text area and create label, wrap them within a box,
+    //          return the box
     private Box ectUnitConverter(Address ad) {
         JLabel tag = new JLabel("Unit Number");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -360,6 +391,7 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert emergency contactor street to text area and create label, wrap them within a box, return the box
     private Box ecStreetConverter(Address ad) {
         JLabel tag = new JLabel("Street Address");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -372,6 +404,7 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert emergency contactor city to text area and create label, wrap them within a box, return the box
     private Box ecCityConverter(Address ad) {
         JLabel tag = new JLabel("City");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -384,6 +417,8 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert emergency contactor province to text area and create label, wrap them within a box,
+    //          return the box
     private Box ecProvinceConverter(Address ad) {
         JLabel tag = new JLabel("Province");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -396,6 +431,7 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // EFFECTS: convert course information to text areas and create labels, wrap them within a box, return the box
     private Box courseConverter(List<Course> courses) {
         Box boxV = Box.createVerticalBox();
         for (Course c : courses) {
@@ -424,6 +460,9 @@ public class StudentInfoPanelUI {
         return boxV;
     }
 
+    /** This class provides action listener to edit course button
+     *  Create a new page for editable course information
+     */
     private class EditCourseAction extends AbstractAction {
 
         private Course course;
@@ -433,6 +472,7 @@ public class StudentInfoPanelUI {
             this.course = c;
         }
 
+        // EFFECTS: create a new page with editable course information
         @Override
         public void actionPerformed(ActionEvent e) {
             JFrame frame = new JFrame();
@@ -440,6 +480,7 @@ public class StudentInfoPanelUI {
         }
     }
 
+    // EFFECTS: convert information to text area and create an associated label, wrap them within a box, return the box
     private Box infoBoxConverter(String fieldName, String content) {
         Box boxH = Box.createHorizontalBox();
         JLabel tag = new JLabel(fieldName);
@@ -454,6 +495,7 @@ public class StudentInfoPanelUI {
         return boxH;
     }
 
+    // EFFECTS: return status to associated text
     private String courseStatusConvertor(int i) {
         if (i == 0) {
             return "Finished";
@@ -466,6 +508,8 @@ public class StudentInfoPanelUI {
         }
     }
 
+    // EFFECTS: convert emergency contactor postal code to text area and create label, wrap them within a box,
+    //          return the box
     private Box ecPostalCodeConverter(Address ad) {
         JLabel tag = new JLabel("Postal Code");
         tag.setPreferredSize(new Dimension(tagWidth, tagHeight));
@@ -478,6 +522,8 @@ public class StudentInfoPanelUI {
         return box;
     }
 
+    // MODIFIES: this
+    // EFFECTS: get user input from text area
     public void getInput() {
         studentFirstName = studentFirstNameInput.getText();
         studentLastName = studentLastNameInput.getText();
@@ -502,6 +548,8 @@ public class StudentInfoPanelUI {
         ecPostalCode = ecPostalCodeInput.getText();
     }
 
+    // MODIFIES: this
+    // EFFECTS: update current student information
     public void update() {
 
         getInput();

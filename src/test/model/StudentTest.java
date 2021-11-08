@@ -194,4 +194,11 @@ class StudentTest {
         courseList.add(c4);
         assertEquals(courseListTest,student.getCurrentCourses(courseList));
     }
+
+    @Test
+    public void GenderTest() {
+        assertEquals("",student.getGender());
+        student.changeGender("Male");
+        assertEquals("Male",student.getGender());
+    }
 }
