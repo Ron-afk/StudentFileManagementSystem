@@ -55,4 +55,5 @@ academic history.
 - As a user I want to save data I inputted 
 - As a user I want to load pre-saved data
 - As a user I want to delete certain student from the list 
+- As a user I want to delete a pre-existing course from a student
 
