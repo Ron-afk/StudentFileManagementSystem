@@ -1,63 +1,144 @@
-[{
-    "course list": [
-        {
-            "course name": "chem 12",
-            "teacher": "fan",
-            "finish time": "2021-12",
-            "grade": 0,
-            "time block": 1,
-            "status": 1
-        },
-        {
-            "course name": "phys12",
-            "teacher": "fan",
-            "finish time": "2021-12",
-            "grade": 0,
-            "time block": 1,
-            "status": 1
-        },
-        {
-            "course name": "math12",
-            "teacher": "li",
-            "finish time": "",
-            "grade": 0,
-            "time block": 0,
-            "status": 0
-        },
-        {
-            "course name": "social 12",
-            "teacher": "dominic",
-            "finish time": "2021-12",
-            "grade": 0,
-            "time block": 2,
-            "status": 1
-        }
-    ],
-    "address": {
-        "city": "city",
-        "provence": "pro",
-        "postal code": "pos",
-        "street address": "street",
-        "unit number": "unit"
-    },
-    "nationality": "nation",
-    "gender": "gender",
-    "First Name": "rang",
-    "emergency contactor": {
+[
+    {
+        "course list": [
+            {
+                "course name": "chem 12",
+                "teacher": "fan",
+                "finish time": "2021-12",
+                "grade": 0,
+                "time block": 1,
+                "status": 1
+            },
+            {
+                "course name": "phys12",
+                "teacher": "fan",
+                "finish time": "2021-12",
+                "grade": 0,
+                "time block": 1,
+                "status": 1
+            },
+            {
+                "course name": "math12",
+                "teacher": "li",
+                "finish time": "",
+                "grade": 0,
+                "time block": 0,
+                "status": 0
+            },
+            {
+                "course name": "social 12",
+                "teacher": "dominic",
+                "finish time": "2021-12",
+                "grade": 0,
+                "time block": 2,
+                "status": 1
+            }
+        ],
         "address": {
-            "city": "ec city",
-            "provence": "ec pro",
-            "postal code": "ec pro",
-            "street address": "ec street",
-            "unit number": "ec unit"
+            "city": "city",
+            "provence": "pro",
+            "postal code": "pos",
+            "street address": "street",
+            "unit number": "unit"
         },
-        "name": "name",
-        "phone number": "ec phone",
-        "relation": "relation    "
+        "nationality": "nation",
+        "gender": "gender",
+        "First Name": "rang",
+        "emergency contactor": {
+            "address": {
+                "city": "ec city",
+                "provence": "ec pro",
+                "postal code": "ec pro",
+                "street address": "ec street",
+                "unit number": "ec unit"
+            },
+            "name": "name",
+            "phone number": "ec phone",
+            "relation": "relation    "
+        },
+        "Last Name": "xiao",
+        "phone number": "phone",
+        "email": "email",
+        "student number": "pen",
+        "date of birth": "dob"
     },
-    "Last Name": "xiao",
-    "phone number": "phone",
-    "email": "email",
-    "student number": "pen",
-    "date of birth": "dob"
-}]
+    {
+        "course list": [
+            {
+                "course name": "phys",
+                "teacher": "?",
+                "finish time": "2020-01",
+                "grade": 100,
+                "time block": 0,
+                "status": 0
+            },
+            {
+                "course name": "chem",
+                "teacher": "fan",
+                "finish time": "",
+                "grade": 0,
+                "time block": 1,
+                "status": 1
+            },
+            {
+                "course name": "??",
+                "teacher": "??",
+                "finish time": "",
+                "grade": 0,
+                "time block": 3,
+                "status": 1
+            },
+            {
+                "course name": "math",
+                "teacher": "xiao",
+                "finish time": "",
+                "grade": 0,
+                "time block": 4,
+                "status": 1
+            },
+            {
+                "course name": "civ",
+                "teacher": "rang",
+                "finish time": "",
+                "grade": 0,
+                "time block": 3,
+                "status": 2
+            },
+            {
+                "course name": "biol",
+                "teacher": "someone",
+                "finish time": "",
+                "grade": 0,
+                "time block": 2,
+                "status": 1
+            }
+        ],
+        "address": {
+            "city": "van",
+            "provence": "bc",
+            "postal code": "xxxxxx",
+            "street address": "street",
+            "unit number": "unit"
+        },
+        "nationality": "chn",
+        "gender": "male",
+        "First Name": "rang",
+        "emergency contactor": {
+            "address": {
+                "city": "ec city",
+                "provence": "ec pv",
+                "postal code": "ec pv",
+                "street address": "street ec",
+                "unit number": "unit ec"
+            },
+            "name": "someone",
+            "phone number": "8888888888",
+            "relation": "???"
+        },
+        "Last Name": "xiao",
+        "phone number": "777-777-7777",
+        "email": "email",
+        "student number": "PEN",
+        "date of birth": "DOB"
+    }
+]

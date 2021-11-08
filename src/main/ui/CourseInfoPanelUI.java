@@ -237,10 +237,11 @@ public class CourseInfoPanelUI extends JPanel {
         // EFFECTS: an option panel will show up and let the user choose if they want to close current page
         @Override
         public void actionPerformed(ActionEvent e) {
+            update();
             if (!courseList.contains(course)) {
                 courseList.add(course);
             }
-            update();
+
             int i = JOptionPane.showConfirmDialog(null,
                     "Close current window?",
                     "Close notice",

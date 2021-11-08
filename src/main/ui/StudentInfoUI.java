@@ -10,8 +10,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 
-/** This class create a new page to represent the detailed student information with their course history
- *
+/**
+ * This class create a new page to represent the detailed student information with their course history
  */
 public class StudentInfoUI extends JFrame {
     private Student student;
@@ -19,11 +19,13 @@ public class StudentInfoUI extends JFrame {
     private List<Student> studentList;
     private JScrollPane scrollPane;
     private JPanel detailedStudentInfo;
+    private List<Course> courseList;
 
     // EFFECTS: create a new page to show the detailed student info
     public StudentInfoUI(List<Student> studentList, Student student) {
         this.student = student;
         this.studentList = studentList;
+        this.courseList = this.student.getAllCourses();
 
         frame.setSize(1290, 900);
         frame.setResizable(true);
@@ -38,7 +40,7 @@ public class StudentInfoUI extends JFrame {
     // EFFECTS: present detailed student info on the frame
     private void presentInfo() {
         detailedStudentInfo = new JPanel();
-        new StudentInfoPanelUI(detailedStudentInfo, student,false);
+        new StudentInfoPanelUI(detailedStudentInfo, student, false);
 
         scrollPane = new JScrollPane(detailedStudentInfo);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -55,24 +57,25 @@ public class StudentInfoUI extends JFrame {
         JPanel southPanel = new JPanel();
         JButton editButton = new JButton(new EditAction(student));
         JButton addCourseButton = new JButton(new AddCourseAction());
-        JButton timeTableButton = new JButton(new TimeTableAction(Student.getCurrentCourses(student.getAllCourses())));
+        JButton timeTableButton = new JButton(new TimeTableAction(Student.getCurrentCourses(courseList)));
         JButton currentAverageButton = new JButton(new AverageAction());
         JButton refreshButton = new JButton(new RefreshAction());
         JPanel northPanel = new JPanel(new BorderLayout());
 
-        northPanel.add(editButton,BorderLayout.EAST);
-        northPanel.add(refreshButton,BorderLayout.WEST);
+        northPanel.add(editButton, BorderLayout.EAST);
+        northPanel.add(refreshButton, BorderLayout.WEST);
 
-        southPanel.add(timeTableButton,BorderLayout.WEST);
-        southPanel.add(currentAverageButton,BorderLayout.CENTER);
-        southPanel.add(addCourseButton,BorderLayout.EAST);
+        southPanel.add(timeTableButton, BorderLayout.WEST);
+        southPanel.add(currentAverageButton, BorderLayout.CENTER);
+        southPanel.add(addCourseButton, BorderLayout.EAST);
 
         frame.add(northPanel, BorderLayout.NORTH);
         frame.add(southPanel, BorderLayout.SOUTH);
     }
 
-    /** This class provide an action listener for tiem table button
-     *  Create a new page to show the time table for current term
+    /**
+     * This class provide an action listener for tiem table button
+     * Create a new page to show the time table for current term
      */
     private class TimeTableAction extends AbstractAction {
         List<Course> courseList;
@@ -89,8 +92,9 @@ public class StudentInfoUI extends JFrame {
         }
     }
 
-    /** This class provide an action listener for refresh button
-     *  Refresh current page
+    /**
+     * This class provide an action listener for refresh button
+     * Refresh current page
      */
     private class RefreshAction extends AbstractAction {
 
@@ -101,15 +105,18 @@ public class StudentInfoUI extends JFrame {
         // EFFECTS: refresh current page
         @Override
         public void actionPerformed(ActionEvent e) {
-            frame.setVisible(false);
-            detailedStudentInfo.setVisible(false);
-            scrollPane.setVisible(false);
-            presentInfo();
+//            frame.setVisible(false);
+//            detailedStudentInfo.setVisible(false);
+//            scrollPane.setVisible(false);
+//            presentInfo();
+            frame.dispose();
+            new StudentInfoUI(studentList, student);
         }
     }
 
-    /** This class provide an action listener for edit button
-     *  Create a new page to edit selected course
+    /**
+     * This class provide an action listener for edit button
+     * Create a new page to edit selected course
      */
     private class EditAction extends AbstractAction {
         Student student;
@@ -127,8 +134,9 @@ public class StudentInfoUI extends JFrame {
         }
     }
 
-    /** This class provides an action listener for add course button
-     *  Create a new page to add new course to student
+    /**
+     * This class provides an action listener for add course button
+     * Create a new page to add new course to student
      */
     private class AddCourseAction extends AbstractAction {
         AddCourseAction() {
@@ -139,13 +147,14 @@ public class StudentInfoUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             JFrame courseFrame = new JFrame();
-            new CourseInfoPanelUI(courseFrame,student.getAllCourses(),new Course(""),true);
+            new CourseInfoPanelUI(courseFrame, courseList, new Course(""), true);
 
         }
     }
 
-    /** This class provides an action listener for average grade button
-     *  Create a new option panel to show the current average grade
+    /**
+     * This class provides an action listener for average grade button
+     * Create a new option panel to show the current average grade
      */
     private class AverageAction extends AbstractAction {
         AverageAction() {
