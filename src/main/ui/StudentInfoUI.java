@@ -50,7 +50,7 @@ public class StudentInfoUI extends JFrame {
         JPanel southPanel = new JPanel();
         JButton editButton = new JButton(new EditAction(student));
         JButton addCourseButton = new JButton(new AddCourseAction());
-        JButton timeTableButton = new JButton("time table");
+        JButton timeTableButton = new JButton(new TimeTableAction(Student.getCurrentCourses(student.getAllCourses())));
         JButton currentAverageButton = new JButton(new AverageAction());
         JButton refreshButton = new JButton(new RefreshAction());
         JPanel northPanel = new JPanel(new BorderLayout());
@@ -64,6 +64,20 @@ public class StudentInfoUI extends JFrame {
 
         frame.add(northPanel, BorderLayout.NORTH);
         frame.add(southPanel, BorderLayout.SOUTH);
+    }
+
+    private class TimeTableAction extends AbstractAction {
+        List<Course> courseList;
+
+        TimeTableAction(List<Course> courseList) {
+            super("Time Table");
+            this.courseList = courseList;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            new TimeTableUI(courseList);
+        }
     }
 
     private class RefreshAction extends AbstractAction {
@@ -120,7 +134,11 @@ public class StudentInfoUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            // stub
+            double avg = student.gradeAvg(student.getFinishedCourses());
+            JOptionPane.showMessageDialog(null,
+                    "Current average is :" + avg,
+                    "Current average",
+                    JOptionPane.PLAIN_MESSAGE);
         }
     }
 }
