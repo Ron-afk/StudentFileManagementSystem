@@ -1,6 +1,7 @@
 package ui;
 
 import model.Course;
+import model.Student;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,12 +17,14 @@ public class TimeTableUI {
     private static final int LABEL_HEIGHT = 50;
 
     private List<Course> courseList;
+    private List<Course> currentCourses;
     private JFrame frame;
     private JPanel panel;
 
     // EFFECTS: construct a new page to show the time table for current term
     public TimeTableUI(List<Course> courseList) {
         this.courseList = courseList;
+        this.currentCourses = Student.getCurrentCourses(courseList);
         frame = new JFrame();
         frame.setSize(WIDTH,HEIGHT);
         frame.setResizable(true);
@@ -34,7 +37,7 @@ public class TimeTableUI {
 
     // EFFECTS: present the time table on the frame
     private void presentInfo() {
-        panel = new JPanel(new GridLayout(courseList.size() + 1,3));
+        panel = new JPanel(new GridLayout(currentCourses.size() + 1,3));
 
         JLabel nameTag = new JLabel(" Course");
         JLabel teacherTag = new JLabel("|| Teacher ");
@@ -57,7 +60,7 @@ public class TimeTableUI {
     // EFFECTS: convert course info to table format
     private void tableConverter() {
 
-        for (Course c : courseList) {
+        for (Course c : currentCourses) {
             String name = c.getCourseName();
             String teacher = c.getTeacher();
             String timeBlock = Integer.toString(c.getTimeBlock());

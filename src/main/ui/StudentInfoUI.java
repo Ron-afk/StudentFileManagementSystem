@@ -55,7 +55,7 @@ public class StudentInfoUI extends JFrame {
         JPanel southPanel = new JPanel();
         JButton editButton = new JButton(new EditAction(student));
         JButton addCourseButton = new JButton(new AddCourseAction());
-        JButton timeTableButton = new JButton(new TimeTableAction(Student.getCurrentCourses(courseList)));
+        JButton timeTableButton = new JButton(new TimeTableAction(courseList));
         JButton currentAverageButton = new JButton(new AverageAction());
         JButton refreshButton = new JButton(new RefreshAction());
         JPanel northPanel = new JPanel(new BorderLayout());
@@ -103,12 +103,12 @@ public class StudentInfoUI extends JFrame {
         // EFFECTS: refresh current page
         @Override
         public void actionPerformed(ActionEvent e) {
-//            frame.setVisible(false);
-//            detailedStudentInfo.setVisible(false);
-//            scrollPane.setVisible(false);
-//            presentInfo();
-            frame.dispose();
-            new StudentInfoUI(studentList, student);
+            frame.setVisible(false);
+            detailedStudentInfo.setVisible(false);
+            scrollPane.setVisible(false);
+            presentInfo();
+//            frame.dispose();
+//            new StudentInfoUI(studentList, student);
         }
     }
 
