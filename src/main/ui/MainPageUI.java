@@ -22,7 +22,10 @@ import java.util.List;
 public class MainPageUI implements ActionListener {
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 900;
-    private ImageIcon initIcon = new ImageIcon("./img/initIcon.JPG");
+    private ImageIcon initIcon = new ImageIcon(
+            new ImageIcon("./img/initIcon.JPG")
+                    .getImage()
+                    .getScaledInstance(30,30,Image.SCALE_DEFAULT));
 
     private String title = "Student File Management System";
     private JFrame mainPage;
@@ -43,6 +46,7 @@ public class MainPageUI implements ActionListener {
         studentList = new ArrayList<>();
         jsonReader = new JsonReader(JSON_STORE);
         jsonWriter = new JsonWriter(JSON_STORE);
+
 
         mainPage = new JFrame();
         mainPage.setSize(WIDTH, HEIGHT);
@@ -126,10 +130,12 @@ public class MainPageUI implements ActionListener {
     // EFFECTS: add button
     private void addButton() {
         addNewButton = new JButton(new AddNewStudentAction());
-        addNewButton.setSize(150, 25);
+        addNewButton.setSize(150, 30);
+        addNewButton.setIcon(initIcon);
 
         saveButton = new JButton(new SaveAction());
         saveButton.setSize(100, 25);
+        saveButton.setIcon(initIcon);
 
         mainPage.add(addNewButton, BorderLayout.NORTH);
         mainPage.add(saveButton, BorderLayout.SOUTH);
