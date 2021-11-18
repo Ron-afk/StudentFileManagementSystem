@@ -53,7 +53,7 @@ public class MainPageUI implements ActionListener {
         mainPage.setTitle(title);
         mainPage.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         mainPage.addWindowListener(new WindowCloseOption());
-        mainPage.setIconImage(initIcon.getImage());
+//        mainPage.setIconImage(initIcon.getImage());
         mainPage.setLayout(new BorderLayout());
 
         addMenuBar();
@@ -306,6 +306,8 @@ public class MainPageUI implements ActionListener {
             }
             panel.setVisible(false);
             infoPane.setVisible(false);
+//            panel.repaint();
+//            infoPane.repaint();
             presentInfo();
         }
     }
