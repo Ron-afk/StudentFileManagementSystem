@@ -21,24 +21,28 @@ public class EmergencyContactor implements Writable {
     // EFFECTS: change emergency contactor's name
     public void changeName(String name) {
         this.name = name;
+        EventLog.getInstance().logEvent(new Event("change emergency contactor's name"));
     }
 
     // MODIFIES: this
     // EFFECTS: change emergency contactor's address
     public void changeAddress(Address address) {
         this.address = address;
+        EventLog.getInstance().logEvent(new Event("change emergency contactor's address"));
     }
 
     // MODIFIES: this
     // EFFECTS: change emergency contactor's  phone number
     public void changePhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
+        EventLog.getInstance().logEvent(new Event("change emergency contactor's phone number"));
     }
 
     // MODIFIES: this
     // EFFECTS: change emergency contactor's relation with student
     public void changeRelation(String relation) {
         this.relation = relation;
+        EventLog.getInstance().logEvent(new Event("change emergency contactor's relation with student"));
     }
 
     // EFFECTS: get emergency contactor's name

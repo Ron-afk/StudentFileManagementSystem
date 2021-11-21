@@ -18,6 +18,7 @@ public class Address implements Writable {
     // EFFECTS: change address postal code
     public void changePostalCode(String postalCode) {
         this.postalCode = postalCode;
+        EventLog.getInstance().logEvent(new Event("change address postal code"));
     }
 
     // EFFECTS: get the postal code
@@ -29,6 +30,7 @@ public class Address implements Writable {
     // EFFECTS: change address city
     public void changeCity(String city) {
         this.city = city;
+        EventLog.getInstance().logEvent(new Event("change address city"));
     }
 
     // EFFECTS: get city
@@ -40,6 +42,7 @@ public class Address implements Writable {
     // EFFECTS: change provence
     public void changeProvince(String provence) {
         this.province = provence;
+        EventLog.getInstance().logEvent(new Event("change address province"));
     }
 
     // EFFECTS: get provence
@@ -51,6 +54,7 @@ public class Address implements Writable {
     // EFFECTS: change unitNum (if applicable)
     public void changeUnitNum(String unitNum) {
         this.unitNum = unitNum;
+        EventLog.getInstance().logEvent(new Event("change address unit number"));
     }
 
     // EFFECTS: get unit number
@@ -62,6 +66,7 @@ public class Address implements Writable {
     // EFFECTS: change street address
     public void changeStreetAddress(String streetAddress) {
         this.streetAddress = streetAddress;
+        EventLog.getInstance().logEvent(new Event("change address street address"));
     }
 
     // EFFECTS: get street address

@@ -38,60 +38,73 @@ public class Student implements Writable {
     public void changeName(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+
+        EventLog.getInstance().logEvent(new Event("Student name changed to  " + firstName + " " + lastName));
     }
 
     // MODIFIES: this
     // EFFECTS: change student's PEN
     public void changeStudentNumber(String id) {
         this.studentNumber = id;
+        EventLog.getInstance().logEvent(new Event(firstName + " " + lastName + "'s student number changed"));
     }
 
     // MODIFIES: this
     // EFFECTS: change student's address on record
     public void changeStudentAddress(Address address) {
         this.address = address;
+        EventLog.getInstance().logEvent(new Event(firstName + " " + lastName + "'s address changed"));
     }
 
     // MODIFIES: this
     // EFFECTS: change student's email address, return warning if the email address is invalid
     public void changeEmail(String email) {
         this.email = email;
+        EventLog.getInstance().logEvent(new Event(firstName + " " + lastName + "'s email address changed"));
     }
 
     // MODIFIES: this
     // EFFECTS: change student's phone number
     public void changePhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
+        EventLog.getInstance().logEvent(new Event(firstName + " " + lastName + "'s phone number changed"));
     }
 
     // MODIFIES: this
     // EFFECTS: change emergency contactor's information
     public void changeEmergencyContactor(EmergencyContactor ec) {
         this.emergencyContactor = ec;
+        EventLog.getInstance().logEvent(new Event(firstName + " "
+                + lastName + "'s emergency contactor changed"));
     }
 
     // MODIFIES: this
     // EFFECTS: change student's nationality
     public void changeNationality(String nationality) {
         this.nationality = nationality;
+        EventLog.getInstance().logEvent(new Event(firstName + " " + lastName + "'s nationality changed"));
     }
 
     // MODIFIES: this
     // EFFECTS: change student's date of birth
     public void changeDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+        EventLog.getInstance().logEvent(new Event(firstName + " " + lastName + "'s DOB changed"));
     }
 
     // MODIFIES: this
     // EFFECTS: change gender "M" for male, "F" for female
     public void changeGender(String gender) {
         this.gender = gender;
+        EventLog.getInstance().logEvent(new Event(firstName + " " + lastName + "'s gender changed"));
     }
 
     // MODIFIES: this
     // EFFECTS: add a course to student's course list
     public void addCourse(Course c) {
         courses.add(c);
+        EventLog.getInstance().logEvent(new Event("Add a new course to "
+                + firstName + " " + lastName + "'s course history"));
     }
 
     // EFFECTS: get student's first name

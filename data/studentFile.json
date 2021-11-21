@@ -140,5 +140,35 @@
         "email": "email",
         "student number": "PEN",
         "date of birth": "DOB"
+    },
+    {
+        "course list": [],
+        "address": {
+            "city": "city",
+            "provence": "province",
+            "postal code": "code",
+            "street address": "1111",
+            "unit number": "111"
+        },
+        "nationality": "chn",
+        "gender": "male",
+        "First Name": "first name",
+        "emergency contactor": {
+            "address": {
+                "city": "city",
+                "provence": "p",
+                "postal code": "p",
+                "street address": "1111",
+                "unit number": "111"
+            },
+            "name": "name",
+            "phone number": "phone",
+            "relation": "father"
+        },
+        "Last Name": "lilili",
+        "phone number": "phone",
+        "email": "email",
+        "student number": "pen",
+        "date of birth": "2000-01-01"
     }
 ]

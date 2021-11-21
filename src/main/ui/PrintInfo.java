@@ -1,8 +1,6 @@
 package ui;
 
-import model.Address;
-import model.Course;
-import model.EmergencyContactor;
+import model.*;
 
 public class PrintInfo {
 
@@ -60,6 +58,12 @@ public class PrintInfo {
             System.out.println("Teacher: " + c.getTeacher());
         } else {
             System.out.println("Planned for future");
+        }
+    }
+
+    public void printLog(EventLog el) {
+        for (Event next : el) {
+            System.out.println(next.toString());
         }
     }
 }

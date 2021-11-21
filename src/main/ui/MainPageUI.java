@@ -1,5 +1,6 @@
 package ui;
 
+import model.EventLog;
 import model.Student;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -322,6 +323,7 @@ public class MainPageUI implements ActionListener {
         @Override
         public void windowClosing(WindowEvent e) {
             String[] options = {"save", "save and close", "close without save", "cancel"};
+            PrintInfo printInfo = new PrintInfo();
             int i = JOptionPane.showOptionDialog(null,
                     "Save and close",
                     "Close?",
@@ -331,8 +333,10 @@ public class MainPageUI implements ActionListener {
                 saveStudents();
             } else if (i == 1) {
                 saveStudents();
+                printInfo.printLog(EventLog.getInstance());
                 System.exit(0);
             } else if (i == 2) {
+                printInfo.printLog(EventLog.getInstance());
                 System.exit(0);
             }
         }

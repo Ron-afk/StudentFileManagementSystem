@@ -23,12 +23,14 @@ public class Course implements Writable {
     // EFFECTS: change course name
     public void changeCourseName(String courseName) {
         this.courseName = courseName;
+        EventLog.getInstance().logEvent(new Event("change course name"));
     }
 
     // MODIFIES: this
     // EFFECTS: change course teacher
     public void changeTeacher(String teacher) {
         this.teacher = teacher;
+        EventLog.getInstance().logEvent(new Event("change course teacher"));
     }
 
     // REQUIRES: input must between 1 - 4
@@ -37,6 +39,7 @@ public class Course implements Writable {
     //          3 is the 1st block in afternoon, 4 is the 2nd block in afternoon
     public void changeTimeBlock(int timeBlock) {
         this.timeBlock = timeBlock;
+        EventLog.getInstance().logEvent(new Event("change course time block"));
     }
 
     // REQUIRES: finish time should be in form of yyyy+term, for example "2020W" refers to 2020 winter term
@@ -44,6 +47,7 @@ public class Course implements Writable {
     // EFFECTS: change the finish time of the course
     public void changeFinishTime(String finishTime) {
         this.finishTime = finishTime;
+        EventLog.getInstance().logEvent(new Event("change course finish time"));
     }
 
     // REQUIRES: grade must be positive
@@ -51,6 +55,7 @@ public class Course implements Writable {
     // EFFECTS: change grade for a finished course
     public void changeGrade(double grade) {
         this.grade = grade;
+        EventLog.getInstance().logEvent(new Event("change course grade"));
     }
 
     // REQUIRES: input int must between 0 - 3
@@ -59,6 +64,7 @@ public class Course implements Writable {
     //          term, 3 means planned for university but will not be taken in following term
     public void changeStatus(int status) {
         this.status = status;
+        EventLog.getInstance().logEvent(new Event("change course status"));
     }
 
 
