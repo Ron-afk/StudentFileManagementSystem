@@ -57,3 +57,48 @@ academic history.
 - As a user I want to delete certain student from the list 
 - As a user I want to delete a pre-existing course from a student
 
+## Phase 4: Task 2
+Sun Nov 21 12:39:11 PST 2021
+rang xiao's email address changed
+
+Sun Nov 21 12:39:11 PST 2021
+rang xiao's nationality changed
+
+Sun Nov 21 12:39:11 PST 2021
+rang xiao's phone number changed
+
+Sun Nov 21 12:39:11 PST 2021
+rang xiao's student number changed
+
+Sun Nov 21 12:39:11 PST 2021
+change address unit number
+
+Sun Nov 21 12:39:11 PST 2021
+change address street address
+
+Sun Nov 21 12:39:11 PST 2021
+change address city
+
+Sun Nov 21 12:39:11 PST 2021
+change address province
+
+Sun Nov 21 12:39:11 PST 2021
+change address postal code
+
+Sun Nov 21 12:39:11 PST 2021
+rang xiao's address changed
+
+Sun Nov 21 12:39:11 PST 2021
+rang xiao's DOB changed
+
+## Phase 4: Task 3
+See PDF file UML_Design_Diagram in the root 
+
+#### Refactor of design:
+Add bidirectional relation between student and course, emergency contactor
+
+Add bidirectional relation between student and address
+
+Add bidirectional relation between emergency contactor and address
+
+Extract an abstract class for StudentInfoUI and StudentInfoPaneUI
